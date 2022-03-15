@@ -1,28 +1,25 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-type Course {
+  type Course {
     id: ID
     name: String
     ects: Int
-    spots: Int
-}
+    capacity: Int
+  }
 
-
-
-type Query {
+  type Query {
     hello: String
     courses: [Course]
-}
+  }
 
-input CourseChoice {
+  input CourseChoice {
     id: ID
-}
+  }
 
-type Mutation {
+  type Mutation {
     addRanking(ranking: [CourseChoice]!): Boolean
-}
-
-`
+  }
+`;
 
 module.exports = typeDefs;
