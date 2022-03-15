@@ -1,62 +1,62 @@
 [
-    {
-        "id": 1,
-        "name": "data and decisions",
-        "ects": 2,
-        "capacity": 30
-    },
-    {
-        "id": 2,
-        "name": "customer centricity",
-        "ects": 2,
-        "capacity": 30
-    },
-    {
-        "id": 3,
-        "name": "agile leadership",
-        "ects": 2,
-        "capacity": 15
-    },
-    {
-        "id": 4,
-        "name": "financial management",
-        "ects": 2,
-        "capacity": 15
-    },
-    {
-        "id": 5,
-        "name": "financial accounting",
-        "ects": 2,
-        "capacity": 30
-    },
-    {
-        "id": 6,
-        "name": "customer analytics",
-        "ects": 2,
-        "capacity": 30
-    },
-    {
-        "id": 7,
-        "name": "businesss economics",
-        "ects": 2,
-        "capacity": 15
-    },
-    {
-        "id": 8,
-        "name": "crafting better decisions",
-        "ects": 2,
-        "capacity": 30
-    },
-    {
-        "id": 9,
-        "name": "ethics and responsibility",
-        "ects": 2,
-        "capacity": 15
-    },
-    {
-        "id": 10,
-        "name": "operations management",
-        "ects": 2,
-        "capacity": 15
-    }
+  {
+    "id": 1,
+    "name": "data and decisions",
+    "ects": 2,
+    "capacity": 30
+  },
+  {
+    "id": 2,
+    "name": "customer centricity",
+    "ects": 2,
+    "capacity": 30
+  },
+  {
+    "id": 3,
+    "name": "agile leadership",
+    "ects": 2,
+    "capacity": 15
+  },
+  {
+    "id": 4,
+    "name": "financial management",
+    "ects": 2,
+    "capacity": 15
+  },
+  {
+    "id": 5,
+    "name": "financial accounting",
+    "ects": 2,
+    "capacity": 30
+  },
+  {
+    "id": 6,
+    "name": "customer analytics",
+    "ects": 2,
+    "capacity": 30
+  },
+  {
+    "id": 7,
+    "name": "businesss economics",
+    "ects": 2,
+    "capacity": 15
+  },
+  {
+    "id": 8,
+    "name": "crafting better decisions",
+    "ects": 2,
+    "capacity": 30
+  },
+  {
+    "id": 9,
+    "name": "ethics and responsibility",
+    "ects": 2,
+    "capacity": 15
+  },
+  {
+    "id": 10,
+    "name": "operations management",
+    "ects": 2,
+    "capacity": 15
+  }
 ]

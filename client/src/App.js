@@ -1,13 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import DragCourses from "./components/DragCourses.js";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        Drag and drop the courses so that your most preferred option is at the
+        top, and your least preferred option is at the bottom.
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <div id="drag-holder">
+            <DragCourses />
+          </div>
         </p>
         <a
           className="App-link"
@@ -15,7 +19,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          submit your preferences
         </a>
       </header>
     </div>
