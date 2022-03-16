@@ -1,9 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { ApolloServer, gql } = require("apollo-server-express");
-const typeDefs = require("./src/schema/typeDefs");
-const resolvers = require("./src/schema/resolvers");
-// const { typeDefs, resolvers } = require('./src/schema/');
+const { typeDefs, resolvers } = require("./src/schema/");
 const db = require("./src/config/connection.js");
 
 const PORT = process.env.PORT || 4000;
