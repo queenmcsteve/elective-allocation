@@ -38,5 +38,14 @@
 }
 
 #drag-holder {
+  font-size: 22px;
+}
+
+#titleText {
+  font-size: 33px;
+}
+
+#instructText {
+  font-size: 22px;
   max-width: 80%;
 }

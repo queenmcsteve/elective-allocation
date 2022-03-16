@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import range from "lodash.range";
-import course from "./courses.js";
+import courses from "./courses.js";
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -13,7 +13,7 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const grid = 2;
+const grid = 1;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -38,7 +38,7 @@ class DragCourses extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: course,
+      items: courses,
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -73,7 +73,7 @@ class DragCourses extends Component {
       console.log(affectedRange);
     }
 
-    const reOrderedList = course.map((course) => {
+    const reOrderedList = courses.map((course) => {
       if (course.id === result.draggableId) {
         console.log("condition 1: ", course);
         course.position = destination.index;
@@ -107,10 +107,10 @@ class DragCourses extends Component {
       result.destination.index
     );
     console.log("???????????????", items);
-    this.setState({
-      ///HELP :: I want need the new state to be ordered by the position key...
-      items: items.position,
-    });
+    // this.setState({
+    //   ///HELP :: I want need the new state to be ordered by the position key...
+    //   items: items.position,
+    // });
     console.log(items);
   }
 
@@ -126,29 +126,31 @@ class DragCourses extends Component {
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
             >
-              {this.state.items.map((item, index) => (
-                <Draggable
-                  key={item.id}
-                  draggableId={item.id}
-                  index={item.position}
-                >
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      <a {...provided.draggableProps} className="handle"></a>
-                      {item.position}. &nbsp;
-                      {item.content}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+              {this.state.items
+                .sort((a, b) => a.position - b.position)
+                .map((item, index) => (
+                  <Draggable
+                    key={item.id}
+                    draggableId={item.id}
+                    index={item.position}
+                  >
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <a {...provided.draggableProps} className="handle"></a>
+                        {item.position}. &nbsp;
+                        {item.content}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
               {provided.placeholder}
             </div>
           )}

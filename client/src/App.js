@@ -6,13 +6,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Drag and drop the courses so that your most preferred option is at the
-        top, and your least preferred option is at the bottom.
-        <p>
-          <div id="drag-holder">
-            <DragCourses />
-          </div>
+        <p id="titleText">RankMatch</p>
+        <p id="instructText">
+          Drag and drop the courses so that your most preferred option is at the
+          top, and your least preferred option is at the bottom.
         </p>
+        <div id="drag-holder">
+          <DragCourses />
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -21,6 +22,7 @@ function App() {
         >
           submit your preferences
         </a>
+        <br />
       </header>
     </div>
   );
