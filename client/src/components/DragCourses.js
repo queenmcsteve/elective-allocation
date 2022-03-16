@@ -43,7 +43,7 @@ class DragCourses extends Component {
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
-
+  //const [{items}, setItems]= useState({items:courses})
   onDragEnd(result) {
     const { destination, source } = result;
     console.log("drag result:", destination, source);
