@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import range from "lodash.range";
 import courses from "./courses.js";
+import DragList from "./DragList.js";
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -105,8 +106,6 @@ class DragCourses extends Component {
     console.log(items);
   }
 
-  // Normally you would want to split things out into separate components.
-  // But in this example everything is just done in one place for simplicity
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
