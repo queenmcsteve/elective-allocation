@@ -73,44 +73,35 @@ class DragCourses extends Component {
       console.log(affectedRange);
     }
 
-    const reOrderedList = courses.map((course) => {
+    courses.map((course) => {
       if (course.id === result.draggableId) {
-        console.log("condition 1: ", course);
         course.position = destination.index;
         return course;
       } else if (affectedRange.includes(course.position)) {
         if (directionOfDrag === "GREATER") {
-          console.log("condition 2.1: ", course);
           course.position = course.position - 1;
           return course;
         } else if (directionOfDrag === "LESS") {
-          console.log("condition 2.2: ", course);
           course.position = course.position + 1;
           return course;
         }
       } else {
-        console.log("condition 3: ", course);
         return course;
       }
     });
-    // this.state = { reOrderedList };
-    // consider creating a drop zone for 'definite no' courses (limited to 2 per student)
+
     if (!result.destination) {
       return;
     }
-    console.log("*****************", this.state.items);
-    console.log("&&&&&&&&&&&&&&&", result.source.index);
-    console.log("&&&&&&&&&&&&&&&", result.destination.index);
     const items = reorder(
       this.state.items,
       result.source.index,
       result.destination.index
-    );
-    console.log("???????????????", items);
-    // this.setState({
-    //   ///HELP :: I want need the new state to be ordered by the position key...
-    //   items: items.position,
-    // });
+    ).sort((a, b) => a.position - b.position);
+
+    this.setState({
+      items,
+    });
     console.log(items);
   }
 
@@ -126,31 +117,29 @@ class DragCourses extends Component {
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
             >
-              {this.state.items
-                .sort((a, b) => a.position - b.position)
-                .map((item, index) => (
-                  <Draggable
-                    key={item.id}
-                    draggableId={item.id}
-                    index={item.position}
-                  >
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}
-                      >
-                        <a {...provided.draggableProps} className="handle"></a>
-                        {item.position}. &nbsp;
-                        {item.content}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
+              {this.state.items.map((item, index) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id}
+                  index={item.position}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                    >
+                      <a {...provided.draggableProps} className="handle"></a>
+                      {item.position + 1}. &nbsp;
+                      {item.content}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
               {provided.placeholder}
             </div>
           )}
