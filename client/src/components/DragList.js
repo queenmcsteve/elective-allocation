@@ -12,7 +12,7 @@ const DragList = () => {
     return <div>error</div>;
   }
   console.log(data);
-  return <div></div>;
+  return <div>graphql data in console</div>;
 };
 
 export default DragList;
