@@ -1,4 +1,3 @@
-import DragCourseFun from "./components/DragCourseFun.js";
 import "./App.css";
 import {
   ApolloClient,
@@ -28,10 +27,10 @@ const App = () => {
             the top, and your least preferred option is at the bottom.
           </p>
           <DragList />
-          <br />
+          {/* <br />
           <div id="drag-holder">
             <DragCourseFun />
-          </div>
+          </div> */}
           <a
             className="App-link"
             href="https://reactjs.org"

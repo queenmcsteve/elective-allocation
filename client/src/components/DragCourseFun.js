@@ -33,7 +33,8 @@ const getListStyle = (isDraggingOver) => ({
   width: 250,
 });
 
-export default function DragCourseFun() {
+const DragCourseFun = () => {
+  // export default function DragCourseFun() {
   const [items, setItems] = useState(courses);
   const onDragEnd = (result) => {
     const { destination, source } = result;
@@ -133,4 +134,5 @@ export default function DragCourseFun() {
       </Droppable>
     </DragDropContext>
   );
-}
+};
+export default DragCourseFun;
