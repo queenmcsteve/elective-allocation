@@ -1,4 +1,4 @@
-import DragCourses from "./components/DragCourses.js";
+import DragCourseFun from "./components/DragCourseFun.js";
 import "./App.css";
 import {
   ApolloClient,
@@ -27,8 +27,10 @@ const App = () => {
             Drag and drop the courses so that your most preferred option is at
             the top, and your least preferred option is at the bottom.
           </p>
+          <DragList />
+          <br />
           <div id="drag-holder">
-            <DragCourses />
+            <DragCourseFun />
           </div>
           <a
             className="App-link"
