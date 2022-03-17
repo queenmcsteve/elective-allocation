@@ -27,18 +27,14 @@ const App = () => {
             the top, and your least preferred option is at the bottom.
           </p>
           <DragList />
-          {/* <br />
-          <div id="drag-holder">
-            <DragCourseFun />
-          </div> */}
-          <a
+          {/* <a
             className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             submit your preferences
-          </a>
+          </a> */}
           <br />
         </header>
       </div>

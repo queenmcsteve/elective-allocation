@@ -2,6 +2,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import range from "lodash.range";
 import courses from "./courses.js";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+const { SUBMIT_RANKING } = require("../mutations");
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -36,6 +38,12 @@ const getListStyle = (isDraggingOver) => ({
 const DragCourseFun = () => {
   // export default function DragCourseFun() {
   const [items, setItems] = useState(courses);
+  const [finalItems, setFinalItems] = useState([]);
+  const [addRanking, { loading, error }] = useMutation(SUBMIT_RANKING, {
+    onCompleted: () => {},
+    onError: () => {},
+  });
+
   const onDragEnd = (result) => {
     const { destination, source } = result;
     console.log("drag result:", destination, source);
@@ -92,47 +100,76 @@ const DragCourseFun = () => {
       result.destination.index
     ).sort((a, b) => a.position - b.position);
 
+    let itemsIdArray = [];
+    reorderedItems.map((entry) => {
+      itemsIdArray.push({ id: entry.id });
+    });
     setItems(reorderedItems);
-    console.log(reorderedItems);
+    setFinalItems(itemsIdArray);
+    // reorderdItems to submit when ready
+    console.log("current ranking:", { reorderedItems });
+    console.log(itemsIdArray);
   };
 
+  const submitList = async () => {
+    try {
+      await addRanking({
+        variables: {
+          ranking: finalItems,
+        },
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+    console.log("sent");
+  };
+  if (loading) {
+    return <div>loading 2</div>;
+  }
+  if (error) {
+    return <div>error 2</div>;
+  }
+
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable">
-        {(provided, snapshot) => (
-          <div
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver)}
-          >
-            {items.map((item, index) => (
-              <Draggable
-                key={item.id}
-                draggableId={item.id}
-                index={item.position}
-              >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemStyle(
-                      snapshot.isDragging,
-                      provided.draggableProps.style
-                    )}
-                  >
-                    <a {...provided.draggableProps} className="handle"></a>
-                    {item.position + 1}. &nbsp;
-                    {item.content}
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+            >
+              {items.map((item, index) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id}
+                  index={item.position}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                    >
+                      <a {...provided.draggableProps} className="handle"></a>
+                      {item.position + 1}. &nbsp;
+                      {item.content}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <button onClick={submitList}>submit your preferences</button>
+    </>
   );
 };
 export default DragCourseFun;
