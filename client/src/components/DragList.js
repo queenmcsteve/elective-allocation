@@ -1,7 +1,7 @@
 import DragCourse from "./DragCourse.js";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const { useQuery } = require("@apollo/client");
-const { COURSES } = require("../queries");
+const { COURSES } = require("../utils/queries");
 
 const DragList = () => {
   const { loading, data, error } = useQuery(COURSES);
