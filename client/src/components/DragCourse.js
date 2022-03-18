@@ -1,8 +1,10 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
 import range from "lodash.range";
 import courses from "./courses.js";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
+
 const { SUBMIT_RANKING } = require("../mutations");
 
 // a little function to help us with reordering the result
@@ -59,7 +61,7 @@ const DragCourseFun = () => {
       return;
     }
 
-    // check direction greater or less than
+    // check direction of drag (up or down)
     const directionOfDrag =
       destination.index > source.index ? "GREATER" : "LESS";
     console.log("direction of drag: ", directionOfDrag);
