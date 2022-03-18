@@ -5,16 +5,18 @@ const { COURSES } = require("../queries");
 
 const DragList = () => {
   const { loading, data, error } = useQuery(COURSES);
-
   if (loading) {
     return <div>loading</div>;
   } else if (error) {
     return <div>error</div>;
   } else {
     console.log("draglist", data);
+    const formattedCourses = data.courses.map((course, index) => {
+      return { ...course, position: index };
+    });
     return (
       <div id="drag-holder">
-        <DragCourse />
+        <DragCourse courses={formattedCourses} />
       </div>
     );
   }

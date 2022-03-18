@@ -1,7 +1,7 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import range from "lodash.range";
-import courses from "./courses.js";
+// import courses from "./courses.js";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
@@ -37,7 +37,7 @@ const getListStyle = (isDraggingOver) => ({
   width: 250,
 });
 
-const DragCourseFun = () => {
+const DragCourseFun = ({ courses }) => {
   // export default function DragCourseFun() {
   const [items, setItems] = useState(courses);
   const [sortItems, setSortItems] = useState([]);
@@ -160,7 +160,7 @@ const DragCourseFun = () => {
                     >
                       <a {...provided.draggableProps} className="handle"></a>
                       {item.position + 1}. &nbsp;
-                      {item.content}
+                      {item.name}
                     </div>
                   )}
                 </Draggable>
