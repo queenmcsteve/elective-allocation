@@ -38,7 +38,7 @@ const getListStyle = (isDraggingOver) => ({
 const DragCourseFun = () => {
   // export default function DragCourseFun() {
   const [items, setItems] = useState(courses);
-  const [finalItems, setFinalItems] = useState([]);
+  const [sortItems, setSortItems] = useState([]);
   const [addRanking, { loading, error }] = useMutation(SUBMIT_RANKING, {
     onCompleted: () => {},
     onError: () => {},
@@ -105,7 +105,7 @@ const DragCourseFun = () => {
       itemsIdArray.push({ id: entry.id });
     });
     setItems(reorderedItems);
-    setFinalItems(itemsIdArray);
+    setSortItems(itemsIdArray);
     // reorderdItems to submit when ready
     console.log("current ranking:", { reorderedItems });
     console.log(itemsIdArray);
@@ -115,7 +115,7 @@ const DragCourseFun = () => {
     try {
       await addRanking({
         variables: {
-          ranking: finalItems,
+          ranking: sortItems,
         },
       });
     } catch (error) {
