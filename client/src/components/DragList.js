@@ -1,4 +1,4 @@
-import DragCourseFun from "./DragCourseFun.js";
+import DragCourse from "./DragCourse.js";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const { useQuery } = require("@apollo/client");
 const { COURSES } = require("../queries");
@@ -14,7 +14,7 @@ const DragList = () => {
     console.log("draglist", data);
     return (
       <div id="drag-holder">
-        <DragCourseFun />
+        <DragCourse />
       </div>
     );
   }
