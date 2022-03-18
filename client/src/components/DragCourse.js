@@ -1,11 +1,10 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import range from "lodash.range";
-// import courses from "./courses.js";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
-const { SUBMIT_RANKING } = require("../mutations");
+const { SUBMIT_RANKING } = require("../utils/mutations");
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -37,7 +36,7 @@ const getListStyle = (isDraggingOver) => ({
   width: 250,
 });
 
-const DragCourseFun = ({ courses }) => {
+const DragCourse = ({ courses }) => {
   // export default function DragCourseFun() {
   const [items, setItems] = useState(courses);
   const [sortItems, setSortItems] = useState([]);
@@ -174,4 +173,4 @@ const DragCourseFun = ({ courses }) => {
     </>
   );
 };
-export default DragCourseFun;
+export default DragCourse;
