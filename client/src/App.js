@@ -5,8 +5,8 @@ import {
   createHttpLink,
   ApolloProvider,
 } from "@apollo/client";
-import DragList from "./components/DragList.js";
 import StudentRank from "./pages/StudentRank.js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || "http://localhost:4000/graphql",
@@ -21,7 +21,11 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <StudentRank />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/StudentRank" element={<StudentRank />} />
+          </Routes>
+        </BrowserRouter>
       </div>
     </ApolloProvider>
   );
