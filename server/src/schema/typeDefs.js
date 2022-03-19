@@ -8,9 +8,16 @@ const typeDefs = gql`
     capacity: Int
   }
 
+  type Student {
+    id: ID
+    email: String
+    ects_budget: Int
+  }
+
   type Query {
     hello: String
     courses: [Course]
+    students: [Student]
   }
 
   input CourseChoice {

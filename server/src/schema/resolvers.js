@@ -1,4 +1,5 @@
 const Course = require("../models/Course");
+const Student = require("../models/Student");
 
 const resolvers = {
   Query: {
@@ -7,6 +8,9 @@ const resolvers = {
     },
     courses: async () => {
       return await Course.find({});
+    },
+    students: async () => {
+      return await Student.find({});
     },
   },
 

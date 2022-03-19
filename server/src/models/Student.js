@@ -1,23 +1,15 @@
 const { Schema, model } = require("mongoose");
 
 const studentSchema = new Schema({
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  },
   email: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true,
     unique: true,
-    validate: {
-      isEmail: true,
-    },
+    match: [/.+@.+\..+/, "Must match an email address!"],
   },
   ects_budget: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+    type: Number,
+    required: true,
     //   validate: {
     //     min: 1,
     //     max: 10,
