@@ -2,7 +2,7 @@ import DragList from "../components/DragList.js";
 
 const StudentRank = () => {
   return (
-    <div className="App">
+    <div>
       <header className="App-header">
         <p id="titleText">RankMatch</p>
         <p id="instructText">

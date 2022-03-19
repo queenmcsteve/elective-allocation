@@ -1,3 +1,4 @@
+const Admin = require("../models/Admin");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
 
@@ -18,6 +19,19 @@ const resolvers = {
     addRanking: (parent, args) => {
       console.log("Received ", args);
       return true;
+    },
+    login: async (_, args) => {
+      console.log(args);
+      const adminUser = await Admin.findOne({ username: args.username });
+      console.log("tick: ", adminUser);
+      if (!adminUser) {
+        return false;
+      }
+      if (await adminUser.isCorrectPassword(args.password)) {
+        console.log("tock: ", adminUser);
+        return true;
+      }
+      return false;
     },
   },
 };

@@ -6,6 +6,7 @@ import {
   ApolloProvider,
 } from "@apollo/client";
 import StudentRank from "./pages/StudentRank.js";
+import Admin from "./pages/Admin.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const httpLink = createHttpLink({
@@ -24,6 +25,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/StudentRank" element={<StudentRank />} />
+            <Route path="/Admin" element={<Admin />} />
           </Routes>
         </BrowserRouter>
       </div>
