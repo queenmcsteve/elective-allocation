@@ -9,4 +9,14 @@ const COURSES = gql`
   }
 `;
 
+const STUDENTS = gql`
+  query {
+    students {
+      id
+      email
+      ects_budget
+    }
+  }
+`;
+
 export { COURSES };

@@ -10,6 +10,7 @@ import Admin from "./pages/Admin.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoggedIn from "./pages/LoggedIn";
 import LoginFail from "./pages/LoginFail";
+import AdminDashboardStyle from "./pages/AdminDashboardStyle";
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || "http://localhost:4000/graphql",
@@ -30,6 +31,10 @@ const App = () => {
             <Route path="/Admin" element={<Admin />} />
             <Route path="/LoggedIn" element={<LoggedIn />} />
             <Route path="/LoginFail" element={<LoginFail />} />
+            <Route
+              path="/AdminDashboardStyle"
+              element={<AdminDashboardStyle />}
+            />
           </Routes>
         </BrowserRouter>
       </div>
