@@ -48,7 +48,6 @@ export default function CourseTable() {
           rowsPerPageOptions={[20]}
           checkboxSelection
         />
-        testing
       </div>
     </>
   );
