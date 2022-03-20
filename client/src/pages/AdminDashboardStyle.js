@@ -1,6 +1,8 @@
 import AdminNav from "../components/AdminNav";
-import StudentFunctions from "../components/StudentFunctions";
-import StudentTable from "../components/StudentTable";
+import CourseFunctions from "../components/CourseFunctions";
+import CourseTable from "../components/CourseTable";
+// import StudentFunctions from "../components/StudentFunctions";
+// import StudentTable from "../components/StudentTable";
 // import StudentTablePro from "../components/StudentTablePro";
 
 const AdminDashboardStyle = () => {
@@ -8,9 +10,11 @@ const AdminDashboardStyle = () => {
     <>
       <AdminNav />
       <div>
-        <StudentFunctions />
-        <StudentTable />
+        {/* <StudentFunctions />
+        <StudentTable /> */}
         {/* <StudentTablePro /> */}
+        <CourseFunctions />
+        <CourseTable />
       </div>
     </>
   );

@@ -38,7 +38,7 @@ const columns = [
   },
 ];
 
-export default function DataTable() {
+export default function StudentTable() {
   const { loading, data, error } = useQuery(STUDENTS);
   if (loading) {
     return <div>loading</div>;
