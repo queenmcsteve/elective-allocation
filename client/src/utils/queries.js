@@ -19,4 +19,4 @@ const STUDENTS = gql`
   }
 `;
 
-export { COURSES };
+export { COURSES, STUDENTS };

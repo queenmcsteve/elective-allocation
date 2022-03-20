@@ -1,4 +1,5 @@
 import AdminNav from "../components/AdminNav";
+import StudentFunctions from "../components/StudentFunctions";
 import StudentTable from "../components/StudentTable";
 // import StudentTablePro from "../components/StudentTablePro";
 
@@ -7,6 +8,7 @@ const AdminDashboardStyle = () => {
     <>
       <AdminNav />
       <div>
+        <StudentFunctions />
         <StudentTable />
         {/* <StudentTablePro /> */}
       </div>
