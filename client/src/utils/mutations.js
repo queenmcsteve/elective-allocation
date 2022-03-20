@@ -6,4 +6,10 @@ const SUBMIT_RANKING = gql`
   }
 `;
 
-export { SUBMIT_RANKING };
+const LOGIN = gql`
+  mutation Mutation($username: String!, $password: String!) {
+    login(username: $username, password: $password)
+  }
+`;
+
+export { SUBMIT_RANKING, LOGIN };

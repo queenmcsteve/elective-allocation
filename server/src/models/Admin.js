@@ -41,7 +41,8 @@ adminSchema.pre("save", async function (next) {
 });
 
 adminSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  const result = await bcrypt.compare(password, this.password);
+  return result;
 };
 
 const Admin = model("Admin", adminSchema);

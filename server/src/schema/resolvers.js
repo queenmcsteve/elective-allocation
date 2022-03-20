@@ -25,12 +25,14 @@ const resolvers = {
       const adminUser = await Admin.findOne({ username: args.username });
       console.log("tick: ", adminUser);
       if (!adminUser) {
+        console.log("no user found");
         return false;
       }
       if (await adminUser.isCorrectPassword(args.password)) {
-        console.log("tock: ", adminUser);
+        console.log("password is correct for: ", adminUser);
         return true;
       }
+      console.log("password is incorrect for:", adminUser);
       return false;
     },
   },
