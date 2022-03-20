@@ -4,7 +4,15 @@ const { useQuery } = require("@apollo/client");
 const { STUDENTS } = require("../utils/queries");
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "id",
+    headerName: "ID",
+    width: 70,
+    // TRY reformatting ID into simple index
+    // valueFormatter: (id) => {
+    //     const idFormatted =
+    // },
+  },
   { field: "email", headerName: "Email", width: 130 },
   {
     field: "ects_budget",
@@ -27,81 +35,6 @@ const columns = [
     field: "allocation",
     headerName: "Allocation",
     width: 130,
-  },
-  //   {
-  //     field: "fullName",
-  //     headerName: "Full name",
-  //     description: "This column has a value getter and is not sortable.",
-  //     sortable: false,
-  //     width: 160,
-  //     valueGetter: (params) =>
-  //       `${params.row.firstName || ""} ${params.row.ects_budget || ""}`,
-  //   },
-];
-
-const rows = [
-  {
-    id: 1,
-    email: "Snow",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 2,
-    email: "Lannister",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 3,
-    email: "Lannister",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 4,
-    email: "Stark",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 5,
-    email: "Targaryen",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 6,
-    email: "Melisandre",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 7,
-    email: "Clifford",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 8,
-    email: "Frances",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 9,
-    email: "Roxie",
-    ects_budget: 10,
-    ranking: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    allocation: [1, 2, 3, 4, 5],
   },
 ];
 
