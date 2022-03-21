@@ -23,13 +23,15 @@ export default function Login() {
   const submitForm = async (formData) => {
     const { username, password } = formData;
     try {
-      console.log(formData);
-      await login({
+      console.log("%%%%", formData);
+      const res = await login({
         variables: {
           username,
           password,
         },
       });
+      // save the token in localstorage
+      console.log(res.data.login);
     } catch (error) {
       console.error(error);
       return <div>wrong password</div>;

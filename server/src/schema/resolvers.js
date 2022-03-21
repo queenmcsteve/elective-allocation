@@ -1,6 +1,8 @@
+const { AuthenticationError } = require("apollo-server-express");
 const Admin = require("../models/Admin");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -25,15 +27,18 @@ const resolvers = {
       const adminUser = await Admin.findOne({ username: args.username });
       console.log("tick: ", adminUser);
       if (!adminUser) {
-        console.log("no user found");
-        return false;
+        throw new AuthenticationError("Account Doesn't Exist!");
       }
       if (await adminUser.isCorrectPassword(args.password)) {
+        // generate the token
+        const token = signToken({
+          username: args.username,
+          _id: adminUser._id,
+        });
         console.log("password is correct for: ", adminUser);
-        return true;
+        return token;
       }
-      console.log("password is incorrect for:", adminUser);
-      return false;
+      throw new AuthenticationError("Wrong Password!");
     },
   },
 };

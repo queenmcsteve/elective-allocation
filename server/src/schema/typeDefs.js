@@ -26,7 +26,7 @@ const typeDefs = gql`
 
   type Mutation {
     addRanking(ranking: [CourseChoice]!): Boolean
-    login(username: String!, password: String!): Boolean
+    login(username: String!, password: String!): String
   }
 `;
 
