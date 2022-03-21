@@ -1,7 +1,5 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-const { useQuery } = require("@apollo/client");
-const { STUDENTS } = require("../utils/queries");
 
 const columns = [
   {
@@ -29,7 +27,7 @@ const columns = [
     field: "matchingIndex",
     headerName: "Matching Index",
     type: "number",
-    width: 60,
+    width: 130,
   },
   {
     field: "allocation",
@@ -38,26 +36,24 @@ const columns = [
   },
 ];
 
-export default function StudentTable() {
-  const { loading, data, error } = useQuery(STUDENTS);
-  if (loading) {
-    return <div>loading</div>;
+export default function StudentTable({ loading, error, data }) {
+  if (data) {
+    return (
+      <div style={{ height: 800, width: "100%" }}>
+        <DataGrid
+          rows={data}
+          columns={columns}
+          pageSize={20}
+          rowsPerPageOptions={[20]}
+          checkboxSelection
+        />
+      </div>
+    );
   } else if (error) {
     return <div>error</div>;
   } else {
-    console.log("students: ", { data });
+    return <div>loading</div>;
     //   const formattedCourses = data.courses.map((course, index) => {
     //     return { ...course, position: index };
   }
-  return (
-    <div style={{ height: 800, width: "100%" }}>
-      <DataGrid
-        rows={data.students}
-        columns={columns}
-        pageSize={20}
-        rowsPerPageOptions={[20]}
-        checkboxSelection
-      />
-    </div>
-  );
 }
