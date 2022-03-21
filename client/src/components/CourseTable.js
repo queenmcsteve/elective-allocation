@@ -24,6 +24,7 @@ const columns = [
     field: "capacity",
     headerName: "Capacity",
     width: 130,
+    editable: true,
   },
 ];
 
