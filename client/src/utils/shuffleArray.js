@@ -1,3 +1,5 @@
+// an implementation of the Durstenfeld shuffle (optimized Fisher-Yates)
+
 export function shuffleArray(a) {
   const array = [...a];
   for (let i = array.length - 1; i > 0; i--) {

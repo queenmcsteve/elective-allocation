@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import AdminNav from "../components/AdminNav";
 import CourseFunctions from "../components/CourseFunctions";
+import CoursesPage from "../components/CoursesPage";
 import CourseTable from "../components/CourseTable";
-import StudentPage from "../components/StudentPage";
+import StudentsPage from "../components/StudentsPage";
 // import StudentTablePro from "../components/StudentTablePro";
 
 const getTab = (currTab) => {
   if (currTab === "Students") {
     return (
       <>
-        <StudentPage />
+        <StudentsPage />
       </>
     );
   } else if (currTab === "Courses") {
     return (
       <>
-        <CourseFunctions />
-        <CourseTable />
+        <CoursesPage />
       </>
     );
   }
