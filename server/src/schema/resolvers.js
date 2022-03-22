@@ -43,6 +43,26 @@ const resolvers = {
       }
       throw new AuthenticationError("Wrong Password!");
     },
+    updateMatchIndices: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You haven't Logged in!");
+      }
+      const studentIds = args.students.map((entry) => entry.studentId);
+      const studentsToUpdate = await Student.find({ _id: { $in: studentIds } });
+      console.log(studentsToUpdate);
+
+      const studentMatchIndexMap = {};
+      args.students.map(
+        (entry) => (studentMatchIndexMap[entry.studentId] = entry.matchIndex)
+      );
+      console.log(studentMatchIndexMap);
+      for (let student of studentsToUpdate) {
+        await Student.findOneAndUpdate(
+          { _id: student._id },
+          { matchIndex: studentMatchIndexMap[student._id] }
+        );
+      }
+    },
   },
 };
 

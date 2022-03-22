@@ -16,12 +16,10 @@ const studentSchema = new Schema({
     //     isInt: true,
     //   },
   },
-  //   ranking: {
-
-  //   },
-  //   allocation: {
-
-  //   }
+  matching_index: {
+    type: Number,
+  },
+  ranking: [{ type: Schema.Types.ObjectId }],
 });
 
 const Student = model("Student", studentSchema);

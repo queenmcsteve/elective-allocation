@@ -24,10 +24,17 @@ const typeDefs = gql`
     id: ID
   }
 
+  input MatchIndex {
+    studentId: ID
+    matchIndex: Int
+  }
+
   type Mutation {
     addRanking(ranking: [CourseChoice]!): Boolean
     login(username: String!, password: String!): String
+    updateMatchIndices(students: [MatchIndex]): Boolean
   }
 `;
+// addMatchIndex(matchingIndex: [Student]!): Number
 
 module.exports = typeDefs;
