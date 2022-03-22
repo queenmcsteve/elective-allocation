@@ -9,9 +9,7 @@ import StudentRank from "./pages/StudentRank.js";
 import Admin from "./pages/Admin.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";
-import LoggedIn from "./pages/LoggedIn";
-import LoginFail from "./pages/LoginFail";
-import AdminDashboardStyle from "./pages/AdminDashboardStyle";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || "http://localhost:4000/graphql",
@@ -44,12 +42,7 @@ const App = () => {
           <Routes>
             <Route path="/StudentRank" element={<StudentRank />} />
             <Route path="/Admin" element={<Admin />} />
-            <Route path="/LoggedIn" element={<LoggedIn />} />
-            <Route path="/LoginFail" element={<LoginFail />} />
-            <Route
-              path="/AdminDashboardStyle"
-              element={<AdminDashboardStyle />}
-            />
+            <Route path="/AdminDashboardStyle" element={<AdminDashboard />} />
           </Routes>
         </BrowserRouter>
       </div>

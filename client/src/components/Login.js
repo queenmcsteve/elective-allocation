@@ -45,7 +45,28 @@ export default function Login() {
   }
 
   if (error) {
-    return <div>error $$$</div>;
+    return (
+      <div className="login-wrapper">
+        <div id="login-error">Wrong Username or Password!</div>
+        <form onSubmit={handleSubmit(submitForm)}>
+          <label>
+            <p>Username</p>
+            <input type="text" {...register("username", { required: true })} />
+            {errors?.username && <div>This field is required</div>}
+          </label>
+          <label>
+            <p>Password</p>
+            <input
+              type="password"
+              {...register("password", { required: true })}
+            />
+          </label>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    );
   }
 
   return (

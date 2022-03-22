@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Login from "../components/Login";
-import AdminDash from "../components/AdminDash";
+import AdminDashboard from "./AdminDashboard";
 import AuthService from "../utils/auth";
 
 const Admin = () => {
@@ -17,8 +17,7 @@ const Admin = () => {
   } else {
     return (
       <div>
-        <h2>Admin</h2>
-        <AdminDash />
+        <AdminDashboard />
       </div>
     );
   }
