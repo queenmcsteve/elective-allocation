@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { LOGIN } from "../utils/mutations";
+import AuthService from "../utils/auth";
 
 export default function Login() {
   const {
@@ -30,8 +31,9 @@ export default function Login() {
           password,
         },
       });
-      // save the token in localstorage
+
       console.log(res.data.login);
+      AuthService.login(res.data.login);
     } catch (error) {
       console.error(error);
       return <div>wrong password</div>;
