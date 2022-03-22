@@ -50,7 +50,8 @@ export default function StudentTable({ loading, error, data }) {
       </div>
     );
   } else if (error) {
-    return <div>error</div>;
+    window.location.assign("/Admin");
+    return;
   } else {
     return <div>loading</div>;
     //   const formattedCourses = data.courses.map((course, index) => {

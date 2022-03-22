@@ -12,8 +12,11 @@ const resolvers = {
     courses: async () => {
       return await Course.find({});
     },
-    students: async () => {
-      return await Student.find({});
+    students: async (parent, args, context) => {
+      if (context.user) {
+        return await Student.find({});
+      }
+      throw new AuthenticationError("You haven't Logged in!");
     },
   },
 
