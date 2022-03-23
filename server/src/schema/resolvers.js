@@ -2,7 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const Admin = require("../models/Admin");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
-const { signToken } = require("../utils/auth");
+const { signToken, signStudentToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -13,7 +13,7 @@ const resolvers = {
       return await Course.find({});
     },
     students: async (parent, args, context) => {
-      if (context.user) {
+      if (context.user && context.user.isAdmin) {
         return await Student.find({});
       }
       throw new AuthenticationError("You haven't Logged in!");
@@ -22,19 +22,20 @@ const resolvers = {
 
   Mutation: {
     addRanking: async (parent, args, context) => {
-      if (!context.user) {
+      if (context.user && context.user.isAdmin) {
+        try {
+          const rankingArray = args.ranking.map((rank) => rank.id);
+          await Student.findOneAndUpdate(
+            { _id: context.user._id },
+            { ranking: rankingArray }
+          );
+          return true;
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
+      } else {
         throw new AuthenticationError("Your link is expired!");
-      }
-      try {
-        const rankingArray = args.ranking.map((rank) => rank.id);
-        await Student.findOneAndUpdate(
-          { _id: context.user._id },
-          { ranking: rankingArray }
-        );
-        return true;
-      } catch (err) {
-        console.log(err);
-        return false;
       }
     },
     login: async (_, args) => {
@@ -58,43 +59,44 @@ const resolvers = {
     updateMatchIndices: async (parent, args, context) => {
       console.log(args.students);
 
-      if (!context.user) {
+      if (context.user && context.user.isAdmin) {
+        try {
+          const studentIds = args.students.map((entry) => entry.studentId);
+          const studentsToUpdate = await Student.find({
+            _id: { $in: studentIds },
+          });
+
+          const studentMatchIndexMap = {};
+          const studentRankUrlMap = {};
+          args.students.map((entry) => {
+            studentMatchIndexMap[entry.studentId] = entry.matching_index;
+          });
+          for (let student of studentsToUpdate) {
+            await Student.findOneAndUpdate(
+              { _id: student._id },
+              {
+                matching_index: studentMatchIndexMap[student._id],
+              }
+            );
+          }
+
+          args.students.map(async (student) => {
+            await Student.findOneAndUpdate(
+              { _id: student._id },
+              { rank_url: `http://localhost:3000/StudentRank?${student._id}` }
+            );
+          });
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+        return true;
+      } else {
         throw new AuthenticationError("You haven't Logged in!");
       }
-      try {
-        const studentIds = args.students.map((entry) => entry.studentId);
-        const studentsToUpdate = await Student.find({
-          _id: { $in: studentIds },
-        });
-
-        const studentMatchIndexMap = {};
-        const studentRankUrlMap = {};
-        args.students.map((entry) => {
-          studentMatchIndexMap[entry.studentId] = entry.matching_index;
-        });
-        for (let student of studentsToUpdate) {
-          await Student.findOneAndUpdate(
-            { _id: student._id },
-            {
-              matching_index: studentMatchIndexMap[student._id],
-            }
-          );
-        }
-
-        args.students.map(async (student) => {
-          await Student.findOneAndUpdate(
-            { _id: student._id },
-            { rank_url: `http://localhost:3000/StudentRank?${student._id}` }
-          );
-        });
-      } catch (error) {
-        console.log(error);
-        return false;
-      }
-      return true;
     },
     generateAllUrls: async (parent, args, context) => {
-      if (context.user) {
+      if (context.user && context.user.isAdmin) {
         const students = await Student.find({});
         for (let student of students) {
           await Student.findOneAndUpdate(
@@ -102,7 +104,7 @@ const resolvers = {
               _id: student._id,
             },
             {
-              rank_url: `http://localhost:3000/StudentRank/${signToken({
+              rank_url: `http://localhost:3000/StudentRank/${signStudentToken({
                 _id: student._id,
               })}`,
             }
@@ -113,14 +115,14 @@ const resolvers = {
       throw new AuthenticationError("You haven't Logged in!");
     },
     generateUrlById: async (parent, args, context) => {
-      if (context.user) {
+      if (context.user && context.user.isAdmin) {
         await Student.findOneAndUpdate(
           {
             _id: args.studentId,
           },
           {
             // TODO: Use the base url of the current host instead of localhost
-            rank_url: `http://localhost:3000/StudentRank/${signToken({
+            rank_url: `http://localhost:3000/StudentRank/${signStudentToken({
               _id: args.studentId,
             })}`,
           }

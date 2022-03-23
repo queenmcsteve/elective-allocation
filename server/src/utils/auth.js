@@ -25,7 +25,11 @@ module.exports = {
     return req;
   },
   signToken: function ({ username, _id }) {
-    const payload = username ? { username, _id } : { _id };
+    const payload = { username, _id, isAdmin: true };
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
+  signStudentToken: function ({ _id }) {
+    const payload = { _id, isAdmin: false };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
