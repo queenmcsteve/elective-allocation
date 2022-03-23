@@ -13,7 +13,7 @@ const typeDefs = gql`
     email: String
     ects_budget: Int
     matching_index: Int
-    ranking: [Int]
+    ranking: [ID]
     rank_url: String
   }
 

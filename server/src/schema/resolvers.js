@@ -21,9 +21,21 @@ const resolvers = {
   },
 
   Mutation: {
-    addRanking: (parent, args, context) => {
-      console.log("Received ", args, " for ", context.user);
-      return true;
+    addRanking: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("Your link is expired!");
+      }
+      try {
+        const rankingArray = args.ranking.map((rank) => rank.id);
+        await Student.findOneAndUpdate(
+          { _id: context.user._id },
+          { ranking: rankingArray }
+        );
+        return true;
+      } catch (err) {
+        console.log(err);
+        return false;
+      }
     },
     login: async (_, args) => {
       console.log(args);
