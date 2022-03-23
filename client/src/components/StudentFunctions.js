@@ -20,17 +20,16 @@ const StudentFunctions = ({ data, setFormattedData }) => {
       return {
         studentId: student.id,
         matching_index: student.matchingIndex,
-        rank_url: student.rank_url,
       };
     });
     try {
       const result = await updateMatchIndex({
         variables: { students: mutationInput },
       });
-      // add function to change color of button to indicate successful sync
+      // TO DO: add function to change color of button to indicate successful sync
       console.log(result);
     } catch (err) {
-      // add alert about error
+      // TO DO: add alert about error
       console.log(err);
     }
   };
@@ -43,17 +42,6 @@ const StudentFunctions = ({ data, setFormattedData }) => {
           </Typography>
         </div>
         <div>
-          <Button
-            color="inherit"
-            onClick={() => {
-              data.map((item) => {
-                item.rank_url = `http://localhost:3000/StudentRank?${item.id}`;
-                console.log(item.rank_url);
-              });
-            }}
-          >
-            Generate URLs
-          </Button>
           <Button
             color="inherit"
             onClick={() => {

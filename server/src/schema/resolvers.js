@@ -44,6 +44,8 @@ const resolvers = {
       throw new AuthenticationError("Wrong Password!");
     },
     updateMatchIndices: async (parent, args, context) => {
+      console.log(args.students);
+
       if (!context.user) {
         throw new AuthenticationError("You haven't Logged in!");
       }
@@ -54,22 +56,49 @@ const resolvers = {
         });
 
         const studentMatchIndexMap = {};
-        args.students.map(
-          (entry) =>
-            (studentMatchIndexMap[entry.studentId] = entry.matching_index)
-        );
-
+        const studentRankUrlMap = {};
+        args.students.map((entry) => {
+          studentMatchIndexMap[entry.studentId] = entry.matching_index;
+        });
         for (let student of studentsToUpdate) {
           await Student.findOneAndUpdate(
             { _id: student._id },
-            { matching_index: studentMatchIndexMap[student._id] }
+            {
+              matching_index: studentMatchIndexMap[student._id],
+            }
           );
         }
+
+        args.students.map(async (student) => {
+          await Student.findOneAndUpdate(
+            { _id: student._id },
+            { rank_url: `http://localhost:3000/StudentRank?${student._id}` }
+          );
+        });
       } catch (error) {
         console.log(error);
         return false;
       }
       return true;
+    },
+    generateAllUrls: async (parent, args, context) => {
+      if (context.user) {
+        const students = await Student.find({});
+        for (let student of students) {
+          await Student.findOneAndUpdate(
+            {
+              _id: student._id,
+            },
+            {
+              rank_url: `http://localhost:3000/StudentRank?token=${signToken({
+                _id: student._id,
+              })}`,
+            }
+          );
+        }
+        return true;
+      }
+      throw new AuthenticationError("You haven't Logged in!");
     },
   },
 };

@@ -14,6 +14,7 @@ const typeDefs = gql`
     ects_budget: Int
     matching_index: Int
     ranking: [Int]
+    rank_url: String
   }
 
   type Query {
@@ -29,12 +30,14 @@ const typeDefs = gql`
   input MatchIndex {
     studentId: ID
     matching_index: Int
+    rank_url: String
   }
 
   type Mutation {
     addRanking(ranking: [CourseChoice]!): Boolean
     login(username: String!, password: String!): String
     updateMatchIndices(students: [MatchIndex]): Boolean
+    generateAllUrls: Boolean
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number
