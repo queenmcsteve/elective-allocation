@@ -8,7 +8,7 @@ const StudentRank = () => {
   useEffect(() => {
     if (token) {
       // store token in local-storage so that we can perform auto login
-      AuthService.login(token, true);
+      AuthService.userLogin(token);
     }
   }, []);
   return (

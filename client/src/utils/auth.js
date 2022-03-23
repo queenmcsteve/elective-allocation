@@ -27,11 +27,13 @@ class AuthService {
     return localStorage.getItem("id_token");
   }
 
-  login(idToken, isUser) {
+  login(idToken) {
     localStorage.setItem("id_token", idToken);
-    if (!isUser) {
-      window.location.assign("/Admin");
-    }
+    window.location.assign("/Admin");
+  }
+
+  userLogin(idToken) {
+    localStorage.setItem("id_token", idToken);
   }
 
   logout() {
