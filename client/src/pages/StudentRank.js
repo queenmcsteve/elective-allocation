@@ -1,6 +1,16 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import DragList from "../components/DragList.js";
+import AuthService from "../utils/auth";
 
 const StudentRank = () => {
+  const { token } = useParams();
+  useEffect(() => {
+    if (token) {
+      // store token in local-storage so that we can perform auto login
+      AuthService.login(token, true);
+    }
+  }, []);
   return (
     <div>
       <header className="App-header">

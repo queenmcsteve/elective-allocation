@@ -40,7 +40,7 @@ const App = () => {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path="/StudentRank" element={<StudentRank />} />
+            <Route path="/StudentRank/:token" element={<StudentRank />} />
             <Route path="/Admin" element={<Admin />} />
             <Route path="/AdminDashboardStyle" element={<AdminDashboard />} />
           </Routes>
