@@ -112,6 +112,23 @@ const resolvers = {
       }
       throw new AuthenticationError("You haven't Logged in!");
     },
+    generateUrlById: async (parent, args, context) => {
+      if (context.user) {
+        await Student.findOneAndUpdate(
+          {
+            _id: args.studentId,
+          },
+          {
+            // TODO: Use the base url of the current host instead of localhost
+            rank_url: `http://localhost:3000/StudentRank/${signToken({
+              _id: args.studentId,
+            })}`,
+          }
+        );
+        return true;
+      }
+      throw new AuthenticationError("You haven't Logged in!");
+    },
   },
 };
 

@@ -38,6 +38,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): String
     updateMatchIndices(students: [MatchIndex]): Boolean
     generateAllUrls: Boolean
+    generateUrlById(studentId: String): Boolean
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number
