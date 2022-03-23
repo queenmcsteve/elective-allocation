@@ -12,4 +12,10 @@ const LOGIN = gql`
   }
 `;
 
-export { SUBMIT_RANKING, LOGIN };
+const UPDATE_MATCH_INDEX = gql`
+  mutation UpdateMatchIndices($students: [MatchIndex]) {
+    updateMatchIndices(students: $students)
+  }
+`;
+
+export { SUBMIT_RANKING, LOGIN, UPDATE_MATCH_INDEX };
