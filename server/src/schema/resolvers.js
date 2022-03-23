@@ -21,8 +21,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addRanking: (parent, args) => {
-      console.log("Received ", args);
+    addRanking: (parent, args, context) => {
+      console.log("Received ", args, " for ", context.user);
       return true;
     },
     login: async (_, args) => {
