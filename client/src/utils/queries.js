@@ -26,6 +26,8 @@ const STUDENTS = gql`
       id
       email
       ects_budget
+      ranking
+      rank_url
     }
   }
 `;

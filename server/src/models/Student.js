@@ -20,6 +20,7 @@ const studentSchema = new Schema({
     type: Number,
   },
   ranking: [{ type: Schema.Types.ObjectId }],
+  rank_url: { type: String, required: false, default: "no url" },
 });
 
 const Student = model("Student", studentSchema);

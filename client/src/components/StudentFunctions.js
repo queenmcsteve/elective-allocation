@@ -14,9 +14,14 @@ const StudentFunctions = ({ data, setFormattedData }) => {
   };
   const [updateMatchIndex, { loading, error }] =
     useMutation(UPDATE_MATCH_INDEX);
+  // const [generateURLs, { loading, error }] = useMutation();
   const syncMatchDb = async () => {
     const mutationInput = data.map((student) => {
-      return { studentId: student.id, matching_index: student.matchingIndex };
+      return {
+        studentId: student.id,
+        matching_index: student.matchingIndex,
+        rank_url: student.rank_url,
+      };
     });
     try {
       const result = await updateMatchIndex({
@@ -38,6 +43,17 @@ const StudentFunctions = ({ data, setFormattedData }) => {
           </Typography>
         </div>
         <div>
+          <Button
+            color="inherit"
+            onClick={() => {
+              data.map((item) => {
+                item.rank_url = `http://localhost:3000/StudentRank?${item.id}`;
+                console.log(item.rank_url);
+              });
+            }}
+          >
+            Generate URLs
+          </Button>
           <Button
             color="inherit"
             onClick={() => {

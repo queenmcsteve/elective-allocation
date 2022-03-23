@@ -19,6 +19,11 @@ const columns = [
     width: 100,
   },
   {
+    field: "rank_url",
+    headerName: "Rank URL",
+    width: 170,
+  },
+  {
     field: "ranking",
     headerName: "Ranking",
     width: 130,
