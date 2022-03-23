@@ -47,21 +47,29 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError("You haven't Logged in!");
       }
-      const studentIds = args.students.map((entry) => entry.studentId);
-      const studentsToUpdate = await Student.find({ _id: { $in: studentIds } });
-      console.log(studentsToUpdate);
+      try {
+        const studentIds = args.students.map((entry) => entry.studentId);
+        const studentsToUpdate = await Student.find({
+          _id: { $in: studentIds },
+        });
 
-      const studentMatchIndexMap = {};
-      args.students.map(
-        (entry) => (studentMatchIndexMap[entry.studentId] = entry.matchIndex)
-      );
-      console.log(studentMatchIndexMap);
-      for (let student of studentsToUpdate) {
-        await Student.findOneAndUpdate(
-          { _id: student._id },
-          { matchIndex: studentMatchIndexMap[student._id] }
+        const studentMatchIndexMap = {};
+        args.students.map(
+          (entry) =>
+            (studentMatchIndexMap[entry.studentId] = entry.matching_index)
         );
+
+        for (let student of studentsToUpdate) {
+          await Student.findOneAndUpdate(
+            { _id: student._id },
+            { matching_index: studentMatchIndexMap[student._id] }
+          );
+        }
+      } catch (error) {
+        console.log(error);
+        return false;
       }
+      return true;
     },
   },
 };

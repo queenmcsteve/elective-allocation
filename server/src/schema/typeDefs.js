@@ -12,6 +12,8 @@ const typeDefs = gql`
     id: ID
     email: String
     ects_budget: Int
+    matching_index: Int
+    ranking: [Int]
   }
 
   type Query {
@@ -26,7 +28,7 @@ const typeDefs = gql`
 
   input MatchIndex {
     studentId: ID
-    matchIndex: Int
+    matching_index: Int
   }
 
   type Mutation {
