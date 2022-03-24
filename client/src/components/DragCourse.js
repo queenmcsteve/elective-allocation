@@ -36,7 +36,7 @@ const getListStyle = (isDraggingOver) => ({
   width: 250,
 });
 
-const DragCourse = ({ courses }) => {
+const DragCourse = ({ courses, refresh }) => {
   // export default function DragCourseFun() {
   console.log(courses);
   const [items, setItems] = useState(courses);
@@ -120,6 +120,7 @@ const DragCourse = ({ courses }) => {
   const submitList = async () => {
     try {
       const ranking = sortItems.length > 0 ? sortItems : formatDefaultRanking();
+      //TODO: HOW TO CONNECT THIS TO STUDENTS' TOKEN???
       await addRanking({
         variables: {
           ranking,
@@ -129,6 +130,7 @@ const DragCourse = ({ courses }) => {
       console.error(error.message);
     }
     console.log("sent");
+    refresh();
   };
   if (loading) {
     return <div>loading 2</div>;

@@ -15,6 +15,8 @@ const typeDefs = gql`
     matching_index: Int
     ranking: [ID]
     rank_url: String
+    allocation: [ID]
+    is_submitted: Boolean
   }
 
   type Query {
@@ -38,7 +40,8 @@ const typeDefs = gql`
     login(username: String!, password: String!): String
     updateMatchIndices(students: [MatchIndex]): Boolean
     generateAllUrls: Boolean
-    generateUrlById(studentId: String): Boolean
+    generateUrlById(studentId: String): Student
+    me: Student
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number

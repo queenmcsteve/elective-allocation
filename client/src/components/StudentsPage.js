@@ -1,7 +1,7 @@
 import StudentFunctions from "../components/StudentFunctions";
 import StudentTable from "../components/StudentTable";
 import { useEffect, useState } from "react";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 const { useQuery } = require("@apollo/client");
 const { STUDENTS } = require("../utils/queries");
@@ -13,7 +13,12 @@ const StudentPage = () => {
   useEffect(() => {
     if (data) {
       const formatted = data.students.map((student, index) => {
-        return { ...student, matchingIndex: index + 1 };
+        return {
+          ...student,
+          ranking: student.ranking.join(","),
+          allocation: student.allocation.join(","),
+          matchingIndex: index + 1,
+        };
       });
       setFormattedData(formatted);
     }
@@ -29,8 +34,12 @@ const StudentPage = () => {
         <StudentTable loading={loading} error={error} data={formattedData} />
       </>
       <br />
-      <div>
-        <CSVLink data={formattedData}>download csv &nbsp;</CSVLink>
+      <div id="csv-wrapper">
+        {formattedData ? (
+          <CSVLink data={formattedData}>download csv &nbsp;</CSVLink>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

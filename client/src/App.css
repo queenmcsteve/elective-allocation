@@ -53,6 +53,7 @@
 #studentFunctions {
   display: flex;
   justify-content: space-between;
+  padding: 7px;
 }
 
 .login-wrapper {
@@ -63,4 +64,8 @@
 
 #login-error {
   color: red;
+}
+
+#csv-wrapper {
+  padding: 10px;
 }

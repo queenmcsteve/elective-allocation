@@ -24,4 +24,33 @@ const GENERATE_URLS = gql`
   }
 `;
 
-export { SUBMIT_RANKING, LOGIN, UPDATE_MATCH_INDEX, GENERATE_URLS };
+const GENERATE_URL_BY_ID = gql`
+  mutation generateUrlById($studentId: String) {
+    generateUrlById(studentId: $studentId) {
+      id
+      email
+      rank_url
+    }
+  }
+`;
+
+const ME = gql`
+  mutation Me {
+    me {
+      id
+      email
+      ranking
+      is_submitted
+      rank_url
+    }
+  }
+`;
+
+export {
+  SUBMIT_RANKING,
+  LOGIN,
+  UPDATE_MATCH_INDEX,
+  GENERATE_URLS,
+  GENERATE_URL_BY_ID,
+  ME,
+};

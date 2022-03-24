@@ -8,14 +8,13 @@ import { shuffleArray } from "../utils/shuffleArray.js";
 import { UPDATE_MATCH_INDEX, GENERATE_URLS } from "../utils/mutations";
 
 const StudentFunctions = ({ data, setFormattedData }) => {
-  const reshuffle = () => {
+  const Reshuffle = () => {
     const reshuffledArray = shuffleArray(data);
     console.log(reshuffledArray);
     setFormattedData(reshuffledArray);
   };
   const [updateMatchIndex, { loading, error }] =
     useMutation(UPDATE_MATCH_INDEX);
-
   const syncMatchDb = async () => {
     const mutationInput = data.map((student) => {
       return {
@@ -67,7 +66,7 @@ const StudentFunctions = ({ data, setFormattedData }) => {
           </Button>
           <Button
             onClick={() => {
-              reshuffle();
+              Reshuffle();
             }}
           >
             Generate Matching Index

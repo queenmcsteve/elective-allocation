@@ -22,12 +22,12 @@ const resolvers = {
 
   Mutation: {
     addRanking: async (parent, args, context) => {
-      if (context.user && context.user.isAdmin) {
+      if (context.user) {
         try {
           const rankingArray = args.ranking.map((rank) => rank.id);
           await Student.findOneAndUpdate(
             { _id: context.user._id },
-            { ranking: rankingArray }
+            { ranking: rankingArray, is_submitted: true }
           );
           return true;
         } catch (err) {
@@ -116,7 +116,7 @@ const resolvers = {
     },
     generateUrlById: async (parent, args, context) => {
       if (context.user && context.user.isAdmin) {
-        await Student.findOneAndUpdate(
+        const updatedStudent = await Student.findOneAndUpdate(
           {
             _id: args.studentId,
           },
@@ -125,9 +125,16 @@ const resolvers = {
             rank_url: `http://localhost:3000/StudentRank/${signStudentToken({
               _id: args.studentId,
             })}`,
-          }
+          },
+          { new: true }
         );
-        return true;
+        return updatedStudent;
+      }
+      throw new AuthenticationError("You haven't Logged in!");
+    },
+    me: async (parent, args, context) => {
+      if (context.user && !context.user.isAdmin) {
+        return await Student.findById(context.user._id);
       }
       throw new AuthenticationError("You haven't Logged in!");
     },

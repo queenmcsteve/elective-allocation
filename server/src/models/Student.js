@@ -16,11 +16,17 @@ const studentSchema = new Schema({
     //     isInt: true,
     //   },
   },
+
+  is_submitted: {
+    type: Boolean,
+    default: false,
+  },
   matching_index: {
     type: Number,
   },
   ranking: [{ type: Schema.Types.ObjectId }],
   rank_url: { type: String, required: false, default: "no url" },
+  allocation: [{ type: Schema.Types.ObjectId }],
 });
 
 const Student = model("Student", studentSchema);

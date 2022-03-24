@@ -28,6 +28,8 @@ const STUDENTS = gql`
       ects_budget
       ranking
       rank_url
+      allocation
+      is_submitted
     }
   }
 `;
