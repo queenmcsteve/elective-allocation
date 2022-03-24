@@ -116,7 +116,7 @@ const resolvers = {
     },
     generateUrlById: async (parent, args, context) => {
       if (context.user && context.user.isAdmin) {
-        await Student.findOneAndUpdate(
+        const updatedStudent = await Student.findOneAndUpdate(
           {
             _id: args.studentId,
           },
@@ -125,9 +125,10 @@ const resolvers = {
             rank_url: `http://localhost:3000/StudentRank/${signStudentToken({
               _id: args.studentId,
             })}`,
-          }
+          },
+          { new: true }
         );
-        return true;
+        return updatedStudent;
       }
       throw new AuthenticationError("You haven't Logged in!");
     },

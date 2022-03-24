@@ -53,6 +53,7 @@
 #studentFunctions {
   display: flex;
   justify-content: space-between;
+  padding: 7px;
 }
 
 .login-wrapper {

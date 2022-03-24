@@ -120,6 +120,7 @@ const DragCourse = ({ courses }) => {
   const submitList = async () => {
     try {
       const ranking = sortItems.length > 0 ? sortItems : formatDefaultRanking();
+      //TODO: HOW TO CONNECT THIS TO STUDENTS' TOKEN???
       await addRanking({
         variables: {
           ranking,
