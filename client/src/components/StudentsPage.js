@@ -1,7 +1,7 @@
 import StudentFunctions from "../components/StudentFunctions";
 import StudentTable from "../components/StudentTable";
 import { useEffect, useState } from "react";
-// import { CSVLink } from "react-csv";
+import { CSVLink } from "react-csv";
 
 const { useQuery } = require("@apollo/client");
 const { STUDENTS } = require("../utils/queries");
@@ -29,8 +29,12 @@ const StudentPage = () => {
         <StudentTable loading={loading} error={error} data={formattedData} />
       </>
       <br />
-      <div>
-        {/* <CSVLink data={formattedData}>download csv &nbsp;</CSVLink> */}
+      <div id="csv-wrapper">
+        {formattedData ? (
+          <CSVLink data={formattedData}>download csv &nbsp;</CSVLink>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

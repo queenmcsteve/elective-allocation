@@ -65,3 +65,7 @@
 #login-error {
   color: red;
 }
+
+#csv-wrapper {
+  padding: 10px;
+}
