@@ -6,10 +6,6 @@ const columns = [
     field: "id",
     headerName: "ID",
     width: 70,
-    // TRY reformatting ID into simple index
-    // valueFormatter: (id) => {
-    //     const idFormatted =
-    // },
   },
   { field: "email", headerName: "Email", width: 130 },
   {
