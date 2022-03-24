@@ -15,6 +15,7 @@ const typeDefs = gql`
     matching_index: Int
     ranking: [ID]
     rank_url: String
+    allocation: [ID]
   }
 
   type Query {

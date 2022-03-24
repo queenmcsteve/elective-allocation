@@ -13,7 +13,12 @@ const StudentPage = () => {
   useEffect(() => {
     if (data) {
       const formatted = data.students.map((student, index) => {
-        return { ...student, matchingIndex: index + 1 };
+        return {
+          ...student,
+          ranking: student.ranking.join(","),
+          allocation: student.allocation.join(","),
+          matchingIndex: index + 1,
+        };
       });
       setFormattedData(formatted);
     }

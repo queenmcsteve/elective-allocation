@@ -52,7 +52,6 @@ export default function StudentTable({ loading, error, data }) {
     {
       field: "ects_budget",
       headerName: "ECTS Budget",
-      type: "number",
       width: 100,
     },
     {
@@ -76,7 +75,6 @@ export default function StudentTable({ loading, error, data }) {
     {
       field: "matchingIndex",
       headerName: "Matching Index",
-      type: "number",
       width: 130,
     },
     {

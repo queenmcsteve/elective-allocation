@@ -21,6 +21,7 @@ const studentSchema = new Schema({
   },
   ranking: [{ type: Schema.Types.ObjectId }],
   rank_url: { type: String, required: false, default: "no url" },
+  allocation: [{ type: Schema.Types.ObjectId }],
 });
 
 const Student = model("Student", studentSchema);
