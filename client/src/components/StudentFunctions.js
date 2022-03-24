@@ -3,8 +3,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useMutation } from "@apollo/client";
+
 import { shuffleArray } from "../utils/shuffleArray.js";
-import { UPDATE_MATCH_INDEX } from "../utils/mutations";
+import { UPDATE_MATCH_INDEX, GENERATE_URLS } from "../utils/mutations";
 
 const StudentFunctions = ({ data, setFormattedData }) => {
   const reshuffle = () => {
@@ -14,7 +15,7 @@ const StudentFunctions = ({ data, setFormattedData }) => {
   };
   const [updateMatchIndex, { loading, error }] =
     useMutation(UPDATE_MATCH_INDEX);
-  // const [generateURLs, { loading, error }] = useMutation();
+
   const syncMatchDb = async () => {
     const mutationInput = data.map((student) => {
       return {
@@ -33,6 +34,25 @@ const StudentFunctions = ({ data, setFormattedData }) => {
       console.log(err);
     }
   };
+  const [generateURLs, { loading2, error2 }] = useMutation(GENERATE_URLS);
+  const genUrls = async () => {
+    const urlInput = data.map((student) => {
+      return {
+        studentId: data.id,
+        rank_url: data.rank_url,
+      };
+    });
+    try {
+      const urls = await generateURLs({
+        variable: { students: genUrls },
+      });
+      window.location.reload();
+      console.log(urls);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <div id="studentFunctions">
@@ -42,8 +62,10 @@ const StudentFunctions = ({ data, setFormattedData }) => {
           </Typography>
         </div>
         <div>
+          <Button color="inherit" onClick={genUrls}>
+            Regenerate Urls
+          </Button>
           <Button
-            color="inherit"
             onClick={() => {
               reshuffle();
             }}

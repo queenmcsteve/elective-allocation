@@ -18,4 +18,10 @@ const UPDATE_MATCH_INDEX = gql`
   }
 `;
 
-export { SUBMIT_RANKING, LOGIN, UPDATE_MATCH_INDEX };
+const GENERATE_URLS = gql`
+  mutation generateUrls {
+    generateAllUrls
+  }
+`;
+
+export { SUBMIT_RANKING, LOGIN, UPDATE_MATCH_INDEX, GENERATE_URLS };
