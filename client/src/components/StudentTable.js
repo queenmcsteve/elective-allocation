@@ -1,5 +1,6 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import Button from "@mui/material/Button";
 
 const columns = [
   {
@@ -18,6 +19,14 @@ const columns = [
     field: "rank_url",
     headerName: "Rank URL",
     width: 170,
+    disableClickEventBubbling: true,
+    renderCell: (params) => {
+      return (
+        <button onClick={navigator.clipboard.writeText(params.value)}>
+          gen-copy new link
+        </button>
+      );
+    },
   },
   {
     field: "ranking",
