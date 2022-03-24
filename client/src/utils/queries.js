@@ -29,6 +29,7 @@ const STUDENTS = gql`
       ranking
       rank_url
       allocation
+      is_submitted
     }
   }
 `;

@@ -16,6 +16,7 @@ const typeDefs = gql`
     ranking: [ID]
     rank_url: String
     allocation: [ID]
+    is_submitted: Boolean
   }
 
   type Query {
@@ -40,6 +41,7 @@ const typeDefs = gql`
     updateMatchIndices(students: [MatchIndex]): Boolean
     generateAllUrls: Boolean
     generateUrlById(studentId: String): Student
+    me: Student
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number

@@ -16,6 +16,11 @@ const studentSchema = new Schema({
     //     isInt: true,
     //   },
   },
+
+  is_submitted: {
+    type: Boolean,
+    default: false,
+  },
   matching_index: {
     type: Number,
   },

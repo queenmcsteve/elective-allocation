@@ -27,7 +27,7 @@ const resolvers = {
           const rankingArray = args.ranking.map((rank) => rank.id);
           await Student.findOneAndUpdate(
             { _id: context.user._id },
-            { ranking: rankingArray }
+            { ranking: rankingArray, is_submitted: true }
           );
           return true;
         } catch (err) {
@@ -129,6 +129,12 @@ const resolvers = {
           { new: true }
         );
         return updatedStudent;
+      }
+      throw new AuthenticationError("You haven't Logged in!");
+    },
+    me: async (parent, args, context) => {
+      if (context.user && !context.user.isAdmin) {
+        return await Student.findById(context.user._id);
       }
       throw new AuthenticationError("You haven't Logged in!");
     },

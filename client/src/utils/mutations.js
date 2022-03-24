@@ -34,10 +34,23 @@ const GENERATE_URL_BY_ID = gql`
   }
 `;
 
+const ME = gql`
+  mutation Me {
+    me {
+      id
+      email
+      ranking
+      is_submitted
+      rank_url
+    }
+  }
+`;
+
 export {
   SUBMIT_RANKING,
   LOGIN,
   UPDATE_MATCH_INDEX,
   GENERATE_URLS,
   GENERATE_URL_BY_ID,
+  ME,
 };

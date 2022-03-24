@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const { useQuery } = require("@apollo/client");
 const { COURSES } = require("../utils/queries");
 
-const DragList = () => {
+const DragList = ({ refresh }) => {
   const { loading, data, error } = useQuery(COURSES);
   if (loading) {
     return <div>loading</div>;
@@ -16,7 +16,7 @@ const DragList = () => {
     });
     return (
       <div id="drag-holder">
-        <DragCourse courses={formattedCourses} />
+        <DragCourse refresh={refresh} courses={formattedCourses} />
       </div>
     );
   }
