@@ -22,7 +22,7 @@ const resolvers = {
 
   Mutation: {
     addRanking: async (parent, args, context) => {
-      if (context.user && context.user.isAdmin) {
+      if (context.user) {
         try {
           const rankingArray = args.ranking.map((rank) => rank.id);
           await Student.findOneAndUpdate(
