@@ -1,4 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
+const { BASEURL } = require("../../../constants");
 const Admin = require("../models/Admin");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
@@ -83,7 +84,7 @@ const resolvers = {
           args.students.map(async (student) => {
             await Student.findOneAndUpdate(
               { _id: student._id },
-              { rank_url: `http://localhost:3000/StudentRank?${student._id}` }
+              { rank_url: `${BASEURL}/StudentRank?${student._id}` }
             );
           });
         } catch (error) {
@@ -104,7 +105,7 @@ const resolvers = {
               _id: student._id,
             },
             {
-              rank_url: `http://localhost:3000/StudentRank/${signStudentToken({
+              rank_url: `${BASEURL}/StudentRank/${signStudentToken({
                 _id: student._id,
               })}`,
             }
@@ -121,8 +122,7 @@ const resolvers = {
             _id: args.studentId,
           },
           {
-            // TODO: Use the base url of the current host instead of localhost
-            rank_url: `http://localhost:3000/StudentRank/${signStudentToken({
+            rank_url: `${BASEURL}/StudentRank/${signStudentToken({
               _id: args.studentId,
             })}`,
           },

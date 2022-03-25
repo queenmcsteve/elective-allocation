@@ -7,6 +7,7 @@ import {
 } from "@apollo/client";
 import StudentRank from "./pages/StudentRank.js";
 import Admin from "./pages/Admin.js";
+import Success from "./components/Success.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -43,6 +44,7 @@ const App = () => {
             <Route path="/StudentRank/:token" element={<StudentRank />} />
             <Route path="/Admin" element={<Admin />} />
             <Route path="/AdminDashboard" element={<AdminDashboard />} />
+            <Route path="/Success" element={<Success />} />
           </Routes>
         </BrowserRouter>
       </div>
