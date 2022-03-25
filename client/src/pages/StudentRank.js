@@ -32,7 +32,7 @@ const StudentRank = () => {
         <p id="instructText">
           {data
             ? data.me.is_submitted
-              ? "Welcome back to change your preferences"
+              ? "Welcome back to change your preferences! "
               : ""
             : ""}
           Drag and drop the courses so that your most preferred option is at the

@@ -54,12 +54,12 @@ const DragCourse = ({ courses, refresh }) => {
       return;
     }
 
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
+    // if (
+    //   destination.droppableId === source.droppableId &&
+    //   destination.index === source.index
+    // ) {
+    //   return;
+    // }
 
     // check direction of drag (up or down)
     const directionOfDrag =
@@ -76,7 +76,7 @@ const DragCourse = ({ courses, refresh }) => {
       console.log(affectedRange);
     }
 
-    courses.map((course) => {
+    const reOrderedCourses = courses.map((course) => {
       if (course.id === result.draggableId) {
         course.position = destination.index;
         return course;
@@ -97,7 +97,7 @@ const DragCourse = ({ courses, refresh }) => {
       return;
     }
     const reorderedItems = reorder(
-      items,
+      reOrderedCourses,
       result.source.index,
       result.destination.index
     ).sort((a, b) => a.position - b.position);
@@ -120,7 +120,6 @@ const DragCourse = ({ courses, refresh }) => {
   const submitList = async () => {
     try {
       const ranking = sortItems.length > 0 ? sortItems : formatDefaultRanking();
-      //TODO: HOW TO CONNECT THIS TO STUDENTS' TOKEN???
       await addRanking({
         variables: {
           ranking,
