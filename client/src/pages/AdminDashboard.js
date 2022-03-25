@@ -3,6 +3,7 @@ import AdminNav from "../components/AdminNav";
 import CoursesPage from "../components/CoursesPage";
 import StudentsPage from "../components/StudentsPage";
 // import StudentTablePro from "../components/StudentTablePro";
+import Button from "@mui/material/Button";
 
 const getTab = (currTab) => {
   if (currTab === "Students") {
@@ -27,6 +28,9 @@ const AdminDashboardStyle = () => {
       <AdminNav setCurrentTab={setCurrentTab} />
       <div>
         <div>{getTab(currTab)}</div>
+      </div>
+      <div>
+        <Button color="inherit">Generate Allocation</Button>
       </div>
     </>
   );
