@@ -46,6 +46,12 @@ const ME = gql`
   }
 `;
 
+const PERFORM_ALLOCATION = gql`
+  mutation performAllocation {
+    performAllocation
+  }
+`;
+
 export {
   SUBMIT_RANKING,
   LOGIN,
@@ -53,4 +59,5 @@ export {
   GENERATE_URLS,
   GENERATE_URL_BY_ID,
   ME,
+  PERFORM_ALLOCATION,
 };
