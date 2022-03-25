@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import range from "lodash.range";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
+import Success from "./Success";
 
 const { SUBMIT_RANKING } = require("../utils/mutations");
 
@@ -128,8 +129,6 @@ const DragCourse = ({ courses, refresh }) => {
       console.error(error.message);
     }
     console.log("sent");
-    refresh();
-    return;
   };
   if (loading) {
     return <div>loading 2</div>;
