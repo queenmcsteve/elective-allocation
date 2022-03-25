@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const Admin = require("../models/Admin");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
+const allocateCourses = require("../utils/allocation");
 const { signToken, signStudentToken } = require("../utils/auth");
 
 const resolvers = {
@@ -122,9 +123,11 @@ const resolvers = {
             _id: args.studentId,
           },
           {
-            rank_url: `${BASEURL}/StudentRank/${signStudentToken({
-              _id: args.studentId,
-            })}`,
+            rank_url: `${context.headers.origin}/StudentRank/${signStudentToken(
+              {
+                _id: args.studentId,
+              }
+            )}`,
           },
           { new: true }
         );
@@ -135,6 +138,30 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user && !context.user.isAdmin) {
         return await Student.findById(context.user._id);
+      }
+      throw new AuthenticationError("You haven't Logged in!");
+    },
+    performAllocation: async (parent, args, context) => {
+      if (context.user && context.user.isAdmin) {
+        console.log("Performing allocation");
+        const students = await Student.find().sort({ matching_index: 1 });
+        const courses = await Course.find();
+        try {
+          const allocations = allocateCourses(students, courses);
+          console.log(allocations);
+          for (let student of allocations) {
+            await Student.findOneAndUpdate(
+              { _id: student.id },
+              {
+                allocation: student.allocation,
+              }
+            );
+          }
+          return true;
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
       }
       throw new AuthenticationError("You haven't Logged in!");
     },

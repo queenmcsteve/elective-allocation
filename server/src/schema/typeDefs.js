@@ -42,6 +42,7 @@ const typeDefs = gql`
     generateAllUrls: Boolean
     generateUrlById(studentId: String): Student
     me: Student
+    performAllocation: Boolean
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number
