@@ -21,7 +21,7 @@ const getTab = (currTab) => {
   }
 };
 
-const AdminDashboardStyle = () => {
+const AdminDashboard = () => {
   const [currTab, setCurrentTab] = useState("Students");
   return (
     <>
@@ -36,4 +36,4 @@ const AdminDashboardStyle = () => {
   );
 };
 
-export default AdminDashboardStyle;
+export default AdminDashboard;
