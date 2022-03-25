@@ -36,7 +36,7 @@ const StudentPage = () => {
       <br />
       <div id="csv-wrapper">
         {formattedData ? (
-          <CSVLink data={formattedData}>download csv &nbsp;</CSVLink>
+          <CSVLink data={formattedData}>download students csv</CSVLink>
         ) : (
           ""
         )}
