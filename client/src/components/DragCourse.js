@@ -4,7 +4,6 @@ import range from "lodash.range";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import Success from "./Success";
-import { BASEURL } from "../../../constants";
 
 const { SUBMIT_RANKING } = require("../utils/mutations");
 
@@ -130,7 +129,7 @@ const DragCourse = ({ courses, refresh }) => {
       console.error(error.message);
     }
     console.log("sent");
-    window.location.href = `${BASEURL}/Success`;
+    window.location.href = `${window.location.origin}/Success`;
   };
   if (loading) {
     return <div>loading 2</div>;
