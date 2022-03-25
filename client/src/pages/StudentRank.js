@@ -14,7 +14,7 @@ const StudentRank = () => {
 
   const [getUserInfo, { loading, error }] = useMutation(ME);
   const [data, setData] = useState();
-  const refreshPage = () => {
+  const refresh = () => {
     updateUserInfo();
   };
   const updateUserInfo = async () => {
@@ -32,13 +32,11 @@ const StudentRank = () => {
         <p id="instructText">
           {data
             ? data.me.is_submitted
-              ? "Welcome back to change your preferences! "
-              : ""
+              ? "Welcome back to RankMatch! You've already submitted your preferences, however you may resubmit if you wish. Drag and drop the courses so that your most preferred option is at the top, and your least preferred option is at the bottom. When you're happy click the button to submit your preferences."
+              : "Welcome to RankMatch! Here you will be able to submit your preferences for elective courses. Drag and drop the courses so that your most preferred option is at the top, and your least preferred option is at the bottom. When you're happy click the button to submit your preferences."
             : ""}
-          Drag and drop the courses so that your most preferred option is at the
-          top, and your least preferred option is at the bottom.
         </p>
-        <DragList refresh={refreshPage} />
+        <DragList refresh={refresh} />
         <br />
       </header>
     </div>
