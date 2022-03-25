@@ -62,18 +62,17 @@ const DragCourse = ({ courses, refresh }) => {
     // }
 
     // check direction of drag (up or down)
-    const directionOfDrag =
-      destination.index > source.index ? "GREATER" : "LESS";
+    const directionOfDrag = destination.index > source.index ? "DOWN" : "UP";
     console.log("direction of drag: ", directionOfDrag);
     console.log("source", source.index, "dest", destination.index);
     // find the affected range
     let affectedRange;
-    if (directionOfDrag === "GREATER") {
+    if (directionOfDrag === "DOWN") {
       affectedRange = range(source.index, destination.index + 1);
-      console.log(affectedRange);
+      console.log("affected range: DOWN", affectedRange);
     } else {
       affectedRange = range(destination.index, source.index);
-      console.log(affectedRange);
+      console.log("affected range2: ", affectedRange);
     }
 
     const reOrderedCourses = courses.map((course) => {
@@ -81,10 +80,10 @@ const DragCourse = ({ courses, refresh }) => {
         course.position = destination.index;
         return course;
       } else if (affectedRange.includes(course.position)) {
-        if (directionOfDrag === "GREATER") {
+        if (directionOfDrag === "DOWN") {
           course.position = course.position - 1;
           return course;
-        } else if (directionOfDrag === "LESS") {
+        } else if (directionOfDrag === "UP") {
           course.position = course.position + 1;
           return course;
         }
@@ -130,6 +129,7 @@ const DragCourse = ({ courses, refresh }) => {
     }
     console.log("sent");
     refresh();
+    return;
   };
   if (loading) {
     return <div>loading 2</div>;
