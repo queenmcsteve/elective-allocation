@@ -41,15 +41,3 @@ db.once("open", () => {
     console.error(err.message);
   }
 });
-
-// async function startServer() {
-
-//     await apolloServer.start()
-
-//     app.use((req, res) => {
-//         res.send("hello from apollo server")
-//     })
-
-//     app.listen(PORT, () => console.log("server running on port: ", PORT))
-// }
-// startServer();
