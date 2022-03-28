@@ -13,7 +13,7 @@ import { setContext } from "@apollo/client/link/context";
 import AdminDashboard from "./pages/AdminDashboard";
 
 const httpLink = createHttpLink({
-  uri: process.env.GRAPHQL_URL || "http://localhost:4000/graphql",
+  uri: "/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
