@@ -1,6 +1,5 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-// import Button from "@mui/material/Button";
 import { useMutation } from "@apollo/client";
 import { GENERATE_URL_BY_ID } from "../utils/mutations";
 
@@ -33,7 +32,6 @@ export default function StudentTable({ loading, error, data }) {
       const rank_url = response.data.generateUrlById.rank_url;
       // Copy the generated url to the clipboard
       navigator.clipboard.writeText(rank_url);
-      console.log(rank_url);
     } catch (error) {
       console.log(
         "Error while generating the url, admin may have logged out",

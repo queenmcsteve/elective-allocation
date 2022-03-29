@@ -29,7 +29,7 @@ const AdminDashboard = () => {
     useMutation(PERFORM_ALLOCATION);
   const allocateStudents = async () => {
     const result = await performAllocation();
-    console.log(result);
+    console.log("allocation: ", result);
   };
   return (
     <>

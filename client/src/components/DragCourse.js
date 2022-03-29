@@ -39,7 +39,6 @@ const getListStyle = (isDraggingOver) => ({
 
 const DragCourse = ({ courses, refresh }) => {
   // export default function DragCourseFun() {
-  console.log(courses);
   const [items, setItems] = useState(courses);
   const [sortItems, setSortItems] = useState([]);
   const [addRanking, { loading, error }] = useMutation(SUBMIT_RANKING, {
@@ -49,7 +48,6 @@ const DragCourse = ({ courses, refresh }) => {
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
-    console.log("drag result:", destination, source);
 
     if (!destination || !source) {
       return;
@@ -64,16 +62,12 @@ const DragCourse = ({ courses, refresh }) => {
 
     // check direction of drag (up or down)
     const directionOfDrag = destination.index > source.index ? "DOWN" : "UP";
-    console.log("direction of drag: ", directionOfDrag);
-    console.log("source", source.index, "dest", destination.index);
     // find the affected range
     let affectedRange;
     if (directionOfDrag === "DOWN") {
       affectedRange = range(source.index, destination.index + 1);
-      console.log("affected range: DOWN", affectedRange);
     } else {
       affectedRange = range(destination.index, source.index);
-      console.log("affected range2: ", affectedRange);
     }
 
     const reOrderedCourses = courses.map((course) => {
@@ -110,7 +104,6 @@ const DragCourse = ({ courses, refresh }) => {
     setSortItems(itemsIdArray);
     // reorderdItems to submit when ready
     console.log("current ranking:", { reorderedItems });
-    console.log(itemsIdArray);
   };
 
   const formatDefaultRanking = () =>
@@ -128,7 +121,7 @@ const DragCourse = ({ courses, refresh }) => {
     } catch (error) {
       console.error(error.message);
     }
-    console.log("sent");
+    console.log("ranking sent");
     window.location.href = `${window.location.origin}/Success`;
   };
   if (loading) {

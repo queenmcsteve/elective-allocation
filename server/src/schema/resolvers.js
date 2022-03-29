@@ -40,9 +40,7 @@ const resolvers = {
       }
     },
     login: async (_, args) => {
-      console.log(args);
       const adminUser = await Admin.findOne({ username: args.username });
-      console.log("tick: ", adminUser);
       if (!adminUser) {
         throw new AuthenticationError("Account Doesn't Exist!");
       }
@@ -52,14 +50,11 @@ const resolvers = {
           username: args.username,
           _id: adminUser._id,
         });
-        console.log("password is correct for: ", adminUser);
         return token;
       }
       throw new AuthenticationError("Wrong Password!");
     },
     updateMatchIndices: async (parent, args, context) => {
-      console.log(args.students);
-
       if (context.user && context.user.isAdmin) {
         try {
           const studentIds = args.students.map((entry) => entry.studentId);
@@ -116,7 +111,6 @@ const resolvers = {
       throw new AuthenticationError("You haven't Logged in!");
     },
     generateUrlById: async (parent, args, context) => {
-      console.log(context.headers.origin);
       if (context.user && context.user.isAdmin) {
         const updatedStudent = await Student.findOneAndUpdate(
           {
@@ -148,7 +142,7 @@ const resolvers = {
         const courses = await Course.find();
         try {
           const allocations = allocateCourses(students, courses);
-          console.log(allocations);
+          console.log("allocation: ", allocations);
           for (let student of allocations) {
             await Student.findOneAndUpdate(
               { _id: student.id },

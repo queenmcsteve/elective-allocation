@@ -10,7 +10,6 @@ const DragList = ({ refresh }) => {
   } else if (error) {
     return <div>error</div>;
   } else {
-    console.log("draglist", data);
     const formattedCourses = data.courses.map((course, index) => {
       return { ...course, position: index };
     });

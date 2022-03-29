@@ -9,7 +9,6 @@ const { STUDENTS } = require("../utils/queries");
 const StudentPage = () => {
   const [formattedData, setFormattedData] = useState();
   const { loading, data, error } = useQuery(STUDENTS);
-  console.log("student query: ", data);
   useEffect(() => {
     if (data) {
       const formatted = data.students.map((student, index) => {

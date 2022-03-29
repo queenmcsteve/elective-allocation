@@ -24,7 +24,6 @@ export default function Login() {
   const submitForm = async (formData) => {
     const { username, password } = formData;
     try {
-      console.log("%%%%", formData);
       const res = await login({
         variables: {
           username,
@@ -32,7 +31,6 @@ export default function Login() {
         },
       });
 
-      console.log(res.data.login);
       AuthService.login(res.data.login);
     } catch (error) {
       console.error(error);

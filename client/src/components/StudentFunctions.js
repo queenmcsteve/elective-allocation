@@ -10,7 +10,6 @@ import { UPDATE_MATCH_INDEX, GENERATE_URLS } from "../utils/mutations";
 const StudentFunctions = ({ data, setFormattedData }) => {
   const Reshuffle = () => {
     const reshuffledArray = shuffleArray(data);
-    console.log(reshuffledArray);
     setFormattedData(reshuffledArray);
   };
   const [updateMatchIndex, { loading, error }] =
@@ -46,7 +45,6 @@ const StudentFunctions = ({ data, setFormattedData }) => {
         variable: { students: genUrls },
       });
       window.location.reload();
-      console.log(urls);
     } catch (err) {
       console.log(err);
     }
