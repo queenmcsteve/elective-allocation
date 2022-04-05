@@ -24,14 +24,15 @@ serverStart();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// if we're in production, serve client/build as static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
-}
+//DISABLE lines 28-35 FOR LOCAL HOSTING
+// // if we're in production, serve client/build as static assets
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../client/build")));
+// }
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
 
 db.once("open", () => {
   try {
