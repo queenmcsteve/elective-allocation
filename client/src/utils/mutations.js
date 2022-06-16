@@ -12,12 +12,6 @@ const LOGIN = gql`
   }
 `;
 
-const UPDATE_MATCH_INDEX = gql`
-  mutation UpdateMatchIndices($students: [MatchIndex]) {
-    updateMatchIndices(students: $students)
-  }
-`;
-
 const GENERATE_URLS = gql`
   mutation generateUrls {
     generateAllUrls
@@ -55,7 +49,6 @@ const PERFORM_ALLOCATION = gql`
 export {
   SUBMIT_RANKING,
   LOGIN,
-  UPDATE_MATCH_INDEX,
   GENERATE_URLS,
   GENERATE_URL_BY_ID,
   ME,
