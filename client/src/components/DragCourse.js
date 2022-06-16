@@ -12,7 +12,7 @@ const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-
+  console.log("reorder:", result);
   return result;
 };
 
@@ -53,12 +53,12 @@ const DragCourse = ({ courses, refresh }) => {
       return;
     }
 
-    // if (
-    //   destination.droppableId === source.droppableId &&
-    //   destination.index === source.index
-    // ) {
-    //   return;
-    // }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
 
     // check direction of drag (up or down)
     const directionOfDrag = destination.index > source.index ? "DOWN" : "UP";
@@ -143,9 +143,9 @@ const DragCourse = ({ courses, refresh }) => {
             >
               {items.map((item, index) => (
                 <Draggable
+                  index={item.position}
                   key={item.id}
                   draggableId={item.id}
-                  index={item.position}
                 >
                   {(provided, snapshot) => (
                     <div
@@ -158,7 +158,7 @@ const DragCourse = ({ courses, refresh }) => {
                       )}
                     >
                       <a {...provided.draggableProps} className="handle"></a>
-                      {item.position + 1}. &nbsp;
+                      {index + 1}. &nbsp;
                       {item.name}
                     </div>
                   )}
