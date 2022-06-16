@@ -17,7 +17,8 @@ db.once("open", async () => {
     for (newCourse of courses) {
     }
     const students = await Student.insertMany(studentData);
-    for (newStudent of students) {
+    for (let newStudent of students) {
+      console.log(newStudent);
     }
     const admin = await Admin.create(adminData, { validateBeforeSave: true });
 

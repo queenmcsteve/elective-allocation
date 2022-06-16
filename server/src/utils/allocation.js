@@ -19,6 +19,14 @@ const allocateCourse = (student, courses) => {
   throw new Error("Allocation failed");
 };
 
+const getRamdomOrder = (size) => {
+  let order = [];
+  for (let i = 0; i < size; i++) {
+    order.push(i);
+  }
+  return order;
+};
+
 const allocateCourses = (inputStudents, inputCourses) => {
   const students = inputStudents
     .filter((s) => s.is_submitted)
@@ -31,8 +39,13 @@ const allocateCourses = (inputStudents, inputCourses) => {
     courses[c.id] = c.capacity;
   }
 
+  // Allocated all the courses for all the students
   for (let i = 0; i < ALLOCATION_PER_STUDENT; i++) {
-    for (let student of students) {
+    // Generate random order for students
+    let order = getRamdomOrder(students.length);
+    console.log("order", order);
+    for (let i = 0; i < students.length; i++) {
+      let student = students[order[i]];
       // Allocate a course to student
 
       // Allocate the course

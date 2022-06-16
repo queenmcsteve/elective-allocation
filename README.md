@@ -20,6 +20,9 @@ A prototype (WIP) tool to elicit student demand for elective courses with limite
 
 # Screenshots
 
+(when mongodb gives you grief:
+$ mongod --dbpath "/c/Users/de silva/coding_bootcamp/project-03/data")
+
 Admin Side
 ![screenshot](./client/public/screenshot_login.jpg)
 Login

@@ -22,7 +22,9 @@ const StudentPage = () => {
           ranking: student.ranking
             .map((courseId) => courseIdNameMap[courseId])
             .join(","),
-          allocation: student.allocation.join(","),
+          allocation: student.allocation
+            .map((courseId) => courseIdNameMap[courseId])
+            .join(","),
           matchingIndex: index + 1,
         };
       });

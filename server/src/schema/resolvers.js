@@ -138,11 +138,11 @@ const resolvers = {
     performAllocation: async (parent, args, context) => {
       if (context.user && context.user.isAdmin) {
         console.log("Performing allocation");
-        const students = await Student.find().sort({ matching_index: 1 });
+        const students = await Student.find();
         const courses = await Course.find();
         try {
           const allocations = allocateCourses(students, courses);
-          console.log("allocation: ", allocations);
+          //console.log("allocation: ", allocations);
           for (let student of allocations) {
             await Student.findOneAndUpdate(
               { _id: student.id },
