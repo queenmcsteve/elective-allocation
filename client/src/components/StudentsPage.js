@@ -4,17 +4,24 @@ import { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 
 const { useQuery } = require("@apollo/client");
-const { STUDENTS } = require("../utils/queries");
+const { STUDENTS_COURSES } = require("../utils/queries");
 
 const StudentPage = () => {
   const [formattedData, setFormattedData] = useState();
-  const { loading, data, error } = useQuery(STUDENTS);
+  const { loading, data, error } = useQuery(STUDENTS_COURSES);
+  const courseIdNameMap = {};
+
   useEffect(() => {
     if (data) {
+      data.courses.forEach((course) => {
+        courseIdNameMap[course.id] = course.name;
+      });
       const formatted = data.students.map((student, index) => {
         return {
           ...student,
-          ranking: student.ranking.join(","),
+          ranking: student.ranking
+            .map((courseId) => courseIdNameMap[courseId])
+            .join(","),
           allocation: student.allocation.join(","),
           matchingIndex: index + 1,
         };
