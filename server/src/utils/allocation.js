@@ -6,6 +6,7 @@ const allocateCourse = (student, courses) => {
     let pref = student.ranking.shift();
     if (!pref) {
       // all the preferences got exhausted, no more courses
+      console.log("preferences exhausted");
       break;
     }
     if (courses[pref] > 0) {
@@ -29,7 +30,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const getRamdomOrder = (size) => {
+const getRandomOrder = (size) => {
   let order = [];
   for (let i = 0; i < size; i++) {
     order.push(i);
@@ -49,14 +50,27 @@ const allocateCourses = (inputStudents, inputCourses) => {
     courses[c.id] = c.capacity;
   }
 
-  let order;
+  function reverseArray(arr) {
+    var newArray = [];
+    for (var i = arr.length - 1; i >= 0; i--) {
+      newArray.push(arr[i]);
+    }
+    return newArray;
+  }
+  // let order;
   // Allocated all the courses for all the students
+  let orderEven = getRandomOrder(students.length);
+  console.log("even: ", orderEven);
+  const orderOdd = reverseArray(orderEven);
+  console.log("odd: ", orderOdd);
   for (let i = 0; i < ALLOCATION_PER_STUDENT; i++) {
     // Generate random order for students
-    order =
-      i % 2 === 1 && order ? order.reverse() : getRamdomOrder(students.length);
+    // order =
+    //   i % 2 === 1 && order ? order.reverse() : getRamdomOrder(students.length);
+    let ordering = i % 2 === 0 ? orderEven : orderOdd;
+    console.log("round: ", i, "order: ", ordering);
     for (let i = 0; i < students.length; i++) {
-      let student = students[order[i]];
+      let student = students[ordering[i]];
       // Allocate a course to student
 
       // Allocate the course
