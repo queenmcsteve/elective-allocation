@@ -19,6 +19,11 @@ const typeDefs = gql`
     is_submitted: Boolean
   }
 
+  type DemandInfo {
+    id: ID
+    name: String
+    demand: Int
+  }
   type Query {
     hello: String
     courses: [Course]
@@ -42,6 +47,7 @@ const typeDefs = gql`
     generateUrlById(studentId: String): Student
     me: Student
     performAllocation: Boolean
+    getDemand: [DemandInfo]
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number

@@ -16,7 +16,7 @@ const allocateCourse = (student, courses) => {
       return;
     }
   }
-  console.log("Allocation failed for student ", student.id);
+  console.log("Allocation failed for student ", student);
   throw new Error("Allocation failed");
 };
 
@@ -42,14 +42,17 @@ const allocateCourses = (inputStudents, inputCourses) => {
   const students = inputStudents
     .filter((s) => s.is_submitted)
     .map((s) => {
+      //1. add ects_budget to return variables for students
       return { id: s.id, ranking: s.ranking, allocation: [] };
     });
 
   let courses = {};
+  //2. add ects to return variables for courses
   for (let c of inputCourses) {
     courses[c.id] = c.capacity;
   }
 
+  //function to reverse an array (native function reverses in-place)
   function reverseArray(arr) {
     var newArray = [];
     for (var i = arr.length - 1; i >= 0; i--) {
@@ -63,6 +66,7 @@ const allocateCourses = (inputStudents, inputCourses) => {
   console.log("even: ", orderEven);
   const orderOdd = reverseArray(orderEven);
   console.log("odd: ", orderOdd);
+  // 3. swap out APS for ects budget/weight below (??)
   for (let i = 0; i < ALLOCATION_PER_STUDENT; i++) {
     // Generate random order for students
     // order =
@@ -88,4 +92,29 @@ const allocateCourses = (inputStudents, inputCourses) => {
   return result;
 };
 
-module.exports = allocateCourses;
+const getDemand = (inputStudents, inputCourses) => {
+  const demand = {};
+  inputStudents
+    .filter((s) => s.is_submitted)
+    .flatMap((s) => {
+      //1. add ects_budget to return variables for students
+      return s.ranking.slice(0, ALLOCATION_PER_STUDENT);
+    })
+    .forEach((courseId) => {
+      demand[courseId] = (demand[courseId] || 0) + 1;
+    });
+  const courseIdNameMap = {};
+  inputCourses.forEach((course) => {
+    courseIdNameMap[course._id] = course.name;
+  });
+  const prettyDemand = [];
+  Object.keys(demand).forEach(function (courseId) {
+    const demandValue = demand[courseId];
+    const courseName = courseIdNameMap[courseId];
+    prettyDemand.push({ id: courseId, name: courseName, demand: demandValue });
+  });
+
+  return prettyDemand;
+};
+
+module.exports = { allocateCourses, getDemand };
