@@ -15,6 +15,10 @@ const courseSchema = new Schema({
     type: Number,
     required: true,
   },
+  demand: {
+    type: Number,
+    required: false,
+  },
 });
 
 const Course = model("Course", courseSchema);

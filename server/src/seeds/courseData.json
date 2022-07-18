@@ -2,51 +2,61 @@
   {
     "name": "data and decisions",
     "ects": 2,
-    "capacity": 30
+    "capacity": 30,
+    "demand": 0
   },
   {
     "name": "customer centricity",
     "ects": 2,
-    "capacity": 30
+    "capacity": 30,
+    "demand": 0
   },
   {
     "name": "agile leadership",
     "ects": 2,
-    "capacity": 15
+    "capacity": 15,
+    "demand": 0
   },
   {
     "name": "financial management",
     "ects": 2,
-    "capacity": 15
+    "capacity": 15,
+    "demand": 0
   },
   {
     "name": "financial accounting",
     "ects": 2,
-    "capacity": 30
+    "capacity": 30,
+    "demand": 0
   },
   {
     "name": "customer analytics",
     "ects": 2,
-    "capacity": 30
+    "capacity": 30,
+    "demand": 0
   },
   {
     "name": "businesss economics",
     "ects": 2,
-    "capacity": 15
+    "capacity": 15,
+    "demand": 0
   },
   {
     "name": "crafting better decisions",
     "ects": 2,
-    "capacity": 30
+    "capacity": 30,
+    "demand": 0
   },
   {
     "name": "ethics and responsibility",
     "ects": 2,
-    "capacity": 15
+    "capacity": 15,
+    "demand": 0
   },
   {
     "name": "operations management",
     "ects": 2,
-    "capacity": 15
+    "capacity": 15,
+    "demand": 0
   }
 ]

@@ -113,7 +113,6 @@ const getDemand = (inputStudents, inputCourses) => {
     const courseName = courseIdNameMap[courseId];
     prettyDemand.push({ id: courseId, name: courseName, demand: demandValue });
   });
-
   return prettyDemand;
 };
 

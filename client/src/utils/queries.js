@@ -16,6 +16,7 @@ const COURSES = gql`
       name
       ects
       capacity
+      demand
     }
   }
 `;
@@ -50,6 +51,7 @@ const STUDENTS_COURSES = gql`
       name
       ects
       capacity
+      demand
     }
   }
 `;

@@ -124,20 +124,28 @@ const resolvers = {
       throw new AuthenticationError("You haven't Logged in!");
     },
 
-    getDemand: async (parent, args, context) => {
-      if (context.user && context.user.isAdmin) {
-        console.log("Getting demand");
-        const students = await Student.find();
-        const courses = await Course.find();
-        try {
-          return getDemand(students, courses);
-          //console.log("allocation: ", allocations);
-        } catch (err) {
-          console.log(err);
-          return false;
+    calculateDemand: async (parent, args, context) => {
+      // console.log("XX", context.user, "XXXXX", context.user.isAdmin);
+      console.log("Getting demand");
+      const students = await Student.find();
+      const courses = await Course.find();
+      try {
+        const demands = getDemand(students, courses);
+        for (let course of demands) {
+          console.log("inloop: ", course);
+          await Course.findOneAndUpdate(
+            { _id: course.id },
+            { demand: course.demand }
+          );
         }
+        return demands;
+      } catch (err) {
+        console.log(err);
+        return false;
       }
-      throw new AuthenticationError("You haven't Logged in!");
+      // if (context.user && context.user.isAdmin) {
+      // }
+      // throw new AuthenticationError("You haven't Logged in!");
     },
   },
 };

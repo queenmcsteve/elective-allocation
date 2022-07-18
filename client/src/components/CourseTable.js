@@ -26,6 +26,12 @@ const columns = [
     width: 130,
     editable: true,
   },
+  {
+    field: "demand",
+    headerName: "Demand",
+    width: 130,
+    editable: true,
+  },
 ];
 
 export default function CourseTable() {

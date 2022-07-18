@@ -6,6 +6,7 @@ const typeDefs = gql`
     name: String
     ects: Int
     capacity: Int
+    demand: Int
   }
 
   type Student {
@@ -47,7 +48,7 @@ const typeDefs = gql`
     generateUrlById(studentId: String): Student
     me: Student
     performAllocation: Boolean
-    getDemand: [DemandInfo]
+    calculateDemand: [DemandInfo]
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number

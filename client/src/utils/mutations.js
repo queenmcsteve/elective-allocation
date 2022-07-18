@@ -46,6 +46,16 @@ const PERFORM_ALLOCATION = gql`
   }
 `;
 
+const GET_DEMAND = gql`
+  mutation Mutation {
+    calculateDemand {
+      id
+      name
+      demand
+    }
+  }
+`;
+
 export {
   SUBMIT_RANKING,
   LOGIN,
@@ -53,4 +63,5 @@ export {
   GENERATE_URL_BY_ID,
   ME,
   PERFORM_ALLOCATION,
+  GET_DEMAND,
 };
