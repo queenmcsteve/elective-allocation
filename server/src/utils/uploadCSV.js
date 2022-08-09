@@ -16,8 +16,8 @@ fs.createReadStream("./RankMatch_courses.csv")
     console.log("finished");
   });
 
-const uploadCsv = (courses) => {
-  const courseCsv = courses;
-};
+// const uploadCsv = (courses) => {
+//   const courseCsv = courses;
+// };
 
-module.exports = { uploadCsv };
+// module.exports = { uploadCsv };

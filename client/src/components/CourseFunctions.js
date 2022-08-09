@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+
 import { useMutation } from "@apollo/client";
 
 import { GET_DEMAND } from "../utils/mutations";
@@ -22,6 +23,7 @@ const CourseFunctions = () => {
           </Typography>
         </div>
         <div>
+          <Button color="inherit">Upload CSV</Button>
           <Button color="inherit" onClick={getDmd}>
             Get Demand
           </Button>
