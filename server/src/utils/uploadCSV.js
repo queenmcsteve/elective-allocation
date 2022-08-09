@@ -6,13 +6,13 @@ const data = [];
 fs.createReadStream("./RankMatch_courses.csv")
   .pipe(parse({ delimiter: ",", columns: true, ltrim: true }))
   .on("data", function (row) {
-    console.log(row);
     data.push(row);
   })
   .on("error", function (error) {
     console.log(error.message);
   })
   .on("end", function () {
+    console.log(data);
     console.log("finished");
   });
 
