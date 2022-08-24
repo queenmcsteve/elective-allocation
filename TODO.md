@@ -1,6 +1,15 @@
 Admin Page:
 • XX Move gen-match-index logic to server side XX
 • XX Translate IDs to names in client XX
+• XX Function to parse and load CSV data (students/courses) XX
+• Make data editable from Admin side (esp. CAPACITY)
+• Swap out APS logic for ECTS budget logic
+• Add upload CSV functionality, connect to parse&load function
+• ADD to Allocation logic: (swap out i & j in one course when allocation fails)
+• ADD column to student sheet which sums rank order of allocation (min 15, max 40) => [1,2,3,4,5] = 15, [6,7,8,9,10] = 40...
+
+MAYBE WE JUST RESTART TO ALLOCATION LOOP WHEN IT FAILS, AND RUN IT UNTIL IT CLEARS? (there's huge equity implications with this approach)
+
 • diagnose why allocation is failing (even though market should clear)
 o preferences seem to be exhausted while some courses must still have capacity
 • Swap out ALLOCATION_PER_STUDENT logic for ECTS budget (in allocation.js)
@@ -22,3 +31,16 @@ Student Page:
 o random order if not submitted yet; color red
 o submitted order if ranking has been submitted; color green
 o add option to edit/change submitted ranking until deadline is reached
+
+when algorithm fails for i in course x
+i is already in x
+and x is the only course with capacity
+SO: find student j who:
+isn't in x (but it is acceptable)
+is in y, where i isn't in y (but it is acceptable)
+THEN:
+take student j out of y
+put student i into y
+put student j into x
+
+> > Continue allocation
