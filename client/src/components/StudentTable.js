@@ -71,13 +71,13 @@ export default function StudentTable({ loading, error, data }) {
       width: 130,
     },
     {
-      field: "matchingIndex",
-      headerName: "Matching Index",
+      field: "allocation",
+      headerName: "Allocation",
       width: 130,
     },
     {
-      field: "allocation",
-      headerName: "Allocation",
+      field: "matchingIndex",
+      headerName: "Match Score",
       width: 130,
     },
   ];

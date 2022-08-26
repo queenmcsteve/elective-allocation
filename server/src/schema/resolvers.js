@@ -147,6 +147,22 @@ const resolvers = {
       // }
       // throw new AuthenticationError("You haven't Logged in!");
     },
+    updateCourse: async (parent, args, context) => {
+      if (context.user) {
+        try {
+          await Course.findOneAndUpdate(
+            { _id: args.courseInfo.id },
+            { ...args.courseInfo }
+          );
+          return true;
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
+      } else {
+        throw new AuthenticationError("Your link is expired!");
+      }
+    },
   },
 };
 

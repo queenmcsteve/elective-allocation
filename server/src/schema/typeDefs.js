@@ -41,6 +41,13 @@ const typeDefs = gql`
     rank_url: String
   }
 
+  input CourseInfo {
+    id: ID
+    name: String
+    ects: Int
+    capacity: Int
+  }
+
   type Mutation {
     addRanking(ranking: [CourseChoice]!): Boolean
     login(username: String!, password: String!): String
@@ -49,6 +56,7 @@ const typeDefs = gql`
     me: Student
     performAllocation: Boolean
     calculateDemand: [DemandInfo]
+    updateCourse(courseInfo: CourseInfo): Boolean
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number

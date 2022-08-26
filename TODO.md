@@ -36,6 +36,7 @@ when algorithm fails for i in course x
 i is already in x
 and x is the only course with capacity
 SO: find student j who:
+[MAYBE INCLUDE Match Score to help identify appropriate j?]
 isn't in x (but it is acceptable)
 is in y, where i isn't in y (but it is acceptable)
 THEN:
