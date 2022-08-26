@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import CourseModal from "./CourseModal";
 const { useQuery } = require("@apollo/client");
 const { COURSES } = require("../utils/queries");
 
@@ -46,11 +47,13 @@ export default function CourseTable() {
 
   const showCourseModal = (params) => {
     // enable modal and set values for current course
+    setCurrentCourse(params.row);
     setShowModal(true);
   };
 
   const { loading, data, error } = useQuery(COURSES);
   const [showModal, setShowModal] = useState(false);
+  const [currentCourse, setCurrentCourse] = useState({});
   if (loading) {
     return <div>loading</div>;
   } else if (error) {
@@ -62,7 +65,7 @@ export default function CourseTable() {
   }
   return (
     <>
-      {showModal ? <div>Showing Modal</div> : <></>}
+      {showModal ? <CourseModal {...currentCourse} /> : <></>}
       <div style={{ height: 800, width: "100%" }}>
         <DataGrid
           rows={data.courses}
