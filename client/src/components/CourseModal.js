@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 const CourseModal = ({ id, name, ects, capacity }) => {
-  console.log(id, name, ects, capacity);
+  // console.log(id, name, ects, capacity);
   // const [cid, setCid] = useState("");
   const [cname, setCname] = useState("");
   const [cects, setCects] = useState("");
@@ -39,7 +39,7 @@ const CourseModal = ({ id, name, ects, capacity }) => {
           capacity: ccapacity,
         },
       });
-      console.log(data);
+      console.log("post try", data);
     } catch (error) {
       console.log("boo booo:", error);
     }
