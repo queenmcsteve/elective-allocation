@@ -4,7 +4,7 @@ Admin Page:
 • XX Function to parse and load CSV data (students/courses) XX
 • Make data editable from Admin side (esp. CAPACITY)
 • Swap out APS logic for ECTS budget logic
-• Add upload CSV functionality, connect to parse&load function
+• Add data paste option, connect to parse&load function
 • ADD to Allocation logic: (swap out i & j in one course when allocation fails)
 • ADD column to student sheet which sums rank order of allocation (min 15, max 40) => [1,2,3,4,5] = 15, [6,7,8,9,10] = 40...
 
@@ -45,3 +45,15 @@ put student i into y
 put student j into x
 
 > > Continue allocation
+
+MAKING CAPACITY/COURSE DATA EDITABLE
+
+- Having the functionality to update course details
+<!-- ++ write an endpoint to send post request & retrieve the data (key value pairs)
+++ get all updated values from the post request data
+++ use these values to update the DB -->
+- adding UI to invoke this functionality
+  ++ on click of edit button, show popup with input fields
+  ++ show current values in input fields
+  ++ on click of submit, ask for confirm
+  ++ on confirm, send post request

@@ -56,6 +56,12 @@ const GET_DEMAND = gql`
   }
 `;
 
+const UPDATE_COURSE = gql`
+  mutation Mutation($courseInfo: CourseInfo) {
+    updateCourse(courseInfo: $courseInfo)
+  }
+`;
+
 export {
   SUBMIT_RANKING,
   LOGIN,
@@ -64,4 +70,5 @@ export {
   ME,
   PERFORM_ALLOCATION,
   GET_DEMAND,
+  UPDATE_COURSE,
 };

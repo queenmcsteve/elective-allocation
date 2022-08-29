@@ -160,7 +160,7 @@ const resolvers = {
           return false;
         }
       } else {
-        throw new AuthenticationError("Your link is expired!");
+        throw new AuthenticationError("You haven't Logged in!");
       }
     },
   },
