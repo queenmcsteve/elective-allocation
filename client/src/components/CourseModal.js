@@ -30,13 +30,16 @@ const CourseModal = ({ id, name, ects, capacity }) => {
     e.preventDefault();
 
     console.log(id, cname, cects, ccapacity);
+
     try {
       const data = await updateCourse({
         variables: {
-          id,
-          name: cname,
-          ects: cects,
-          capacity: ccapacity,
+          courseInfo: {
+            id,
+            name: cname,
+            ects: cects,
+            capacity: ccapacity,
+          },
         },
       });
       console.log("post try", data);
