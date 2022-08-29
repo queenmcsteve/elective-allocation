@@ -28,6 +28,7 @@ const StudentFunctions = ({ data, setFormattedData }) => {
           </Typography>
         </div>
         <div>
+          <Button color="inherit">Update Data</Button>
           <Button color="inherit" onClick={genUrls}>
             Regenerate Urls
           </Button>

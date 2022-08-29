@@ -1,10 +1,10 @@
 name,ects,capacity,demand
 data and decisions,2,30,0
-*customer centricity,2,30,0
-*agile leadership,2,15,0
+customer centricity,2,30,0
+agile leadership,2,15,0
 financial management,2,30,0
 financial accounting,2,15,0
-*customer analytics,2,15,0
+customer analytics,2,15,0
 business economics,2,15,0
 crafting better decisions,2,30,0
 ethics and responsibility,2,15,0
