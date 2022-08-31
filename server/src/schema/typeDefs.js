@@ -57,6 +57,7 @@ const typeDefs = gql`
     performAllocation: Boolean
     calculateDemand: [DemandInfo]
     updateCourse(courseInfo: CourseInfo): Boolean
+    uploadCourses(courseData: CourseInfo): Boolean
   }
 `;
 // addMatchIndex(matchingIndex: [Student]!): Number

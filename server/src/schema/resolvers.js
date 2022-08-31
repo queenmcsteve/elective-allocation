@@ -3,6 +3,7 @@ const Admin = require("../models/Admin");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
 const { allocateCourses, getDemand } = require("../utils/allocation");
+const { uploadCourseData } = require("../utils/uploadCSV");
 const { signToken, signStudentToken } = require("../utils/auth");
 
 const resolvers = {
@@ -154,6 +155,20 @@ const resolvers = {
             { _id: args.courseInfo.id },
             { ...args.courseInfo }
           );
+          return true;
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
+      } else {
+        throw new AuthenticationError("You haven't Logged in!");
+      }
+    },
+    uploadCourses: async (parent, args, context) => {
+      if (context.user) {
+        console.log("loading course data", parent, args);
+        try {
+          //const upload = uploadCourseData(courseData);
           return true;
         } catch (err) {
           console.log(err);

@@ -70,4 +70,4 @@ const uploadStudentData = (studentData) => {
   });
 };
 
-// module.exports = { uploadCourseData, uploadStudentData };
+module.exports = { uploadCourseData, uploadStudentData };

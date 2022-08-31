@@ -8,10 +8,10 @@ import Typography from "@mui/material/Typography";
 const CourseModal = ({ id, name, ects, capacity }) => {
   // console.log(id, name, ects, capacity);
   // const [cid, setCid] = useState("");
-  const [cname, setCname] = useState("");
-  const [cects, setCects] = useState("");
-  const [ccapacity, setCcapacity] = useState("");
-  const [updateCourse, { data, error }] = useMutation(UPDATE_COURSE);
+  const [cname, setCname] = useState(name);
+  const [cects, setCects] = useState(ects);
+  const [ccapacity, setCcapacity] = useState(capacity);
+  const [updateCourse, { loading, error }] = useMutation(UPDATE_COURSE);
 
   // const idUpdate = (e) => {
   //   setCid(e.target.value);
@@ -37,12 +37,12 @@ const CourseModal = ({ id, name, ects, capacity }) => {
           courseInfo: {
             id,
             name: cname,
-            ects: cects,
-            capacity: ccapacity,
+            ects: parseInt(cects),
+            capacity: parseInt(ccapacity),
           },
         },
       });
-      console.log("post try", data);
+      console.log("post attempt:", data);
     } catch (error) {
       console.log("boo booo:", error);
     }
@@ -58,7 +58,7 @@ const CourseModal = ({ id, name, ects, capacity }) => {
           <input
             type="text"
             id="c_name"
-            placeholder={name}
+            value={cname}
             onChange={nameUpdate}
           ></input>
           <br></br>
@@ -66,7 +66,7 @@ const CourseModal = ({ id, name, ects, capacity }) => {
           <input
             type="number"
             id="c_ects"
-            placeholder={ects}
+            value={cects}
             onChange={ectsUpdate}
           ></input>
           <br></br>
@@ -74,7 +74,7 @@ const CourseModal = ({ id, name, ects, capacity }) => {
           <input
             type="number"
             id="c_capacity"
-            placeholder={capacity}
+            value={ccapacity}
             onChange={capacityUpdate}
           ></input>
           <br></br>
