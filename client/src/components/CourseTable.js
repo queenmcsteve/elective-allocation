@@ -65,7 +65,11 @@ export default function CourseTable() {
   }
   return (
     <>
-      {showModal ? <CourseModal {...currentCourse} /> : <></>}
+      {showModal ? (
+        <CourseModal {...currentCourse} setShowModal={setShowModal} />
+      ) : (
+        <></>
+      )}
       <div style={{ height: 800, width: "100%" }}>
         <DataGrid
           rows={data.courses}

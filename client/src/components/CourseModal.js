@@ -5,7 +5,7 @@ import { UPDATE_COURSE } from "../utils/mutations";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const CourseModal = ({ id, name, ects, capacity }) => {
+const CourseModal = ({ id, name, ects, capacity, setShowModal }) => {
   // console.log(id, name, ects, capacity);
   // const [cid, setCid] = useState("");
   const [cname, setCname] = useState(name);
@@ -42,7 +42,8 @@ const CourseModal = ({ id, name, ects, capacity }) => {
           },
         },
       });
-      console.log("post attempt:", data);
+      console.log("post successful:", data);
+      setShowModal(false);
     } catch (error) {
       console.log("boo booo:", error);
     }
