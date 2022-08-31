@@ -45,6 +45,7 @@ const UpdateCourseModal = () => {
         courseData,
       },
     });
+    console.log(courseData);
   };
   return (
     <div>

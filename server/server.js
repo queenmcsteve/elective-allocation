@@ -21,7 +21,7 @@ const serverStart = async () => {
 };
 serverStart();
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //DISABLE lines 28-35 FOR LOCAL HOSTING

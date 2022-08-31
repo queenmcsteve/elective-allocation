@@ -2,9 +2,11 @@ const { AuthenticationError } = require("apollo-server-express");
 const Admin = require("../models/Admin");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
+const db = require("../config/connection");
 const { allocateCourses, getDemand } = require("../utils/allocation");
 const { uploadCourseData } = require("../utils/uploadCSV");
 const { signToken, signStudentToken } = require("../utils/auth");
+const { parse } = require("csv-parse");
 
 const resolvers = {
   Query: {
@@ -166,13 +168,25 @@ const resolvers = {
     },
     uploadCourses: async (parent, args, context) => {
       if (context.user) {
-        console.log("loading course data", parent, args);
+        console.log("args 1: ", args.courseData);
+        // let parsedArgs = args.parse({
+        //   delimiter: ",",
+        //   columns: true,
+        //   ltrim: true,
+        // });
         try {
-          //const upload = uploadCourseData(courseData);
-          return true;
-        } catch (err) {
-          console.log(err);
-          return false;
+          await Course.deleteMany({});
+
+          const courses = await Course.insertMany({
+            courseData: args.courseData,
+          });
+          for (newCourse of courses) {
+          }
+
+          console.log("all done!");
+          process.exit(0);
+        } catch (error) {
+          throw error;
         }
       } else {
         throw new AuthenticationError("You haven't Logged in!");
