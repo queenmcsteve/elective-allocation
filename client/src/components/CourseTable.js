@@ -1,8 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
+
 import CourseModal from "./CourseModal";
-const { useQuery } = require("@apollo/client");
+const { useQuery, NetworkStatus } = require("@apollo/client");
 const { COURSES } = require("../utils/queries");
 
 export default function CourseTable() {
@@ -51,7 +52,7 @@ export default function CourseTable() {
     setShowModal(true);
   };
 
-  const { loading, data, error, refetch } = useQuery(COURSES);
+  const { loading, data, error, refetch, networkStatus } = useQuery(COURSES);
   const [showModal, setShowModal] = useState(false);
   const updateSuccess = () => {
     setShowModal(false);

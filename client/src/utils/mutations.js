@@ -62,6 +62,12 @@ const UPDATE_COURSE = gql`
   }
 `;
 
+const UPLOAD_COURSES = gql`
+  mutation Mutation($courseData: [CourseData]) {
+    uploadCourses(courseData: $courseData)
+  }
+`;
+
 export {
   SUBMIT_RANKING,
   LOGIN,
@@ -71,4 +77,5 @@ export {
   PERFORM_ALLOCATION,
   GET_DEMAND,
   UPDATE_COURSE,
+  UPLOAD_COURSES,
 };

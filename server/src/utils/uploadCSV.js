@@ -7,8 +7,8 @@ const Student = require("../models/Student");
 
 const data = [];
 
-let courseData = "./RankMatch_courses.csv";
-let studentData = "./RankMatch_students.csv";
+// let courseData = "./RankMatch_courses.csv";
+// let studentData = "./RankMatch_students.csv";
 
 const uploadCourseData = (courseData) => {
   fs.createReadStream(courseData)
