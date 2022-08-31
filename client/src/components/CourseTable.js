@@ -51,8 +51,12 @@ export default function CourseTable() {
     setShowModal(true);
   };
 
-  const { loading, data, error } = useQuery(COURSES);
+  const { loading, data, error, refetch } = useQuery(COURSES);
   const [showModal, setShowModal] = useState(false);
+  const updateSuccess = () => {
+    setShowModal(false);
+    refetch();
+  };
   const [currentCourse, setCurrentCourse] = useState({});
   if (loading) {
     return <div>loading</div>;
@@ -66,7 +70,7 @@ export default function CourseTable() {
   return (
     <>
       {showModal ? (
-        <CourseModal {...currentCourse} setShowModal={setShowModal} />
+        <CourseModal {...currentCourse} updateSuccess={updateSuccess} />
       ) : (
         <></>
       )}
