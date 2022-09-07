@@ -34,7 +34,6 @@ const uploadCourseData = (courseData) => {
       }
 
       console.log("all done!");
-      process.exit(0);
     } catch (error) {
       throw error;
     }

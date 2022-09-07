@@ -3,27 +3,8 @@ const { parse } = require("csv-parse");
 const db = require("../config/connection");
 const Course = require("../models/Course");
 const Student = require("../models/Student");
-// const Admin = require("../models/Admin");
-
-// const data = [];
-
-// let courseData = "./RankMatch_courses.csv";
-// let studentData = "./RankMatch_students.csv";
 
 const uploadCourseData = (courseData) => {
-  // fs.createReadStream(courseData)
-  //   .pipe(parse({ delimiter: ",", columns: true, ltrim: true }))
-  //   .on("data", function (row) {
-  //     data.push(row);
-  //   })
-  //   .on("error", function (error) {
-  //     console.log(error.message);
-  //   })
-  //   .on("end", function () {
-  //     console.log(data);
-  //     console.log("finished");
-  //   });
-
   db.once("open", async () => {
     try {
       await Course.deleteMany({});
@@ -69,7 +50,5 @@ const uploadStudentData = (studentData) => {
     }
   });
 };
-
-// uploadStudentData(studentData);
 
 module.exports = { uploadCourseData, uploadStudentData };

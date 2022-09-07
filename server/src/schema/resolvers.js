@@ -168,23 +168,17 @@ const resolvers = {
     },
     uploadCourses: async (parent, args, context) => {
       if (context.user) {
-        console.log("args 1: ", args.courseData);
-        // let parsedArgs = args.parse({
-        //   delimiter: ",",
-        //   columns: true,
-        //   ltrim: true,
-        // });
+        console.log("args 1: ", args);
         try {
           await Course.deleteMany({});
 
-          const courses = await Course.insertMany({
-            courseData: args.courseData,
-          });
-          for (newCourse of courses) {
-          }
+          const courses = await Course.insertMany(args.courseData);
+          // for (newCourse of courses) {
+          //   console.log(newCourse);
+          // }
 
           console.log("all done!");
-          process.exit(0);
+          return true;
         } catch (error) {
           throw error;
         }
