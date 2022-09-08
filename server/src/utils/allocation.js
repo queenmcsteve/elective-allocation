@@ -11,8 +11,9 @@ const allocateCourse = (student, courses) => {
     }
     if (courses[pref] > 0) {
       // Seat is available so allocate
-      courses[pref]--; // reduce the capacity
+      courses[pref].capacity--; // reduce the capacity
       student.allocation.push(pref);
+      student.allocationWeight += courses[pref].ects;
       return;
     }
   }
@@ -49,36 +50,41 @@ const allocateCourses = (inputStudents, inputCourses) => {
   let courses = {};
   //2. add ects to return variables for courses
   for (let c of inputCourses) {
-    courses[c.id] = c.capacity;
+    courses[c.id] = { capacity: c.capacity, ects: c.ects };
   }
 
-  //function to reverse an array (native function reverses in-place)
-  function reverseArray(arr) {
-    var newArray = [];
-    for (var i = arr.length - 1; i >= 0; i--) {
-      newArray.push(arr[i]);
-    }
-    return newArray;
-  }
   // let order;
   // Allocated all the courses for all the students
-  let orderEven = getRandomOrder(students.length);
-  console.log("even: ", orderEven);
-  const orderOdd = reverseArray(orderEven);
-  console.log("odd: ", orderOdd);
+  let studentOrder = getRandomOrder(students.length);
+  console.log("even: ", studentOrder);
   // 3. swap out APS for ects budget/weight below (??)
-  for (let i = 0; i < ALLOCATION_PER_STUDENT; i++) {
-    // Generate random order for students
-    // order =
-    //   i % 2 === 1 && order ? order.reverse() : getRamdomOrder(students.length);
-    let ordering = i % 2 === 0 ? orderEven : orderOdd;
-    console.log("round: ", i, "order: ", ordering);
-    for (let i = 0; i < students.length; i++) {
-      let student = students[ordering[i]];
-      // Allocate a course to student
 
-      // Allocate the course
-      allocateCourse(student, courses);
+  // Get the student list in a random order
+  let listForCurrentRound = [];
+  for (let i = 0; i < students.length; i++) {
+    listForCurrentRound.push(students[studentOrder[i]]);
+    listForCurrentRound = listForCurrentRound.map((s) => {
+      return { ...s, allocationWeight: 0 };
+    });
+  }
+
+  // process the list until there is no student left.
+  let listForTheNextRound = [];
+  // allocate one course
+  while (listForCurrentRound.length > 0) {
+    let student = listForCurrentRound.shift();
+    allocateCourse(student, courses);
+
+    // if student allocation has finished then continue
+    if (student.allocationWeight >= student.ects_budget) {
+      // this student is fully allocated
+      continue;
+    }
+    listForTheNextRound.unshift(student);
+    if (listForCurrentRound.length === 0) {
+      // Swap the lists when the first list is fully processed
+      listForCurrentRound = listForTheNextRound;
+      listForTheNextRound = [];
     }
   }
 
