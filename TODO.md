@@ -3,7 +3,7 @@ Admin Page:
 • XX Translate IDs to names in client XX
 • XX Function to parse and load CSV data (students/courses) XX
 • XX Make data editable from Admin side (esp. CAPACITY)
-• Add data paste option, connect to parse&load function
+• XX Add data paste option, connect to parse&load function
 • Swap out APS logic for ECTS budget logic
 • ADD to Allocation logic: (swap out i & j in one course when allocation fails)
 • ADD column to student sheet which sums rank order of allocation (min 15, max 40) => [1,2,3,4,5] = 15, [6,7,8,9,10] = 40...

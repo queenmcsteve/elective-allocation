@@ -2,15 +2,23 @@ const ALLOCATION_PER_STUDENT = 5;
 
 const allocateCourse = (student, courses) => {
   // Iterate over current preferences and allocate if possible.
-  while (true) {
+  console.log(
+    "weight: ",
+    student.allocationWeight,
+    "budget :",
+    student.ects_budget
+  );
+  while (student.allocationWeight < student.ects_budget) {
+    // console.log("a", student.ranking);
     let pref = student.ranking.shift();
     if (!pref) {
       // all the preferences got exhausted, no more courses
-      console.log("preferences exhausted");
+      console.log("preferences exhausted", student.allocationWeight);
       break;
     }
-    if (courses[pref] > 0) {
+    if (courses[pref].capacity > 0) {
       // Seat is available so allocate
+      console.log("b", courses[pref]);
       courses[pref].capacity--; // reduce the capacity
       student.allocation.push(pref);
       student.allocationWeight += courses[pref].ects;
@@ -44,7 +52,12 @@ const allocateCourses = (inputStudents, inputCourses) => {
     .filter((s) => s.is_submitted)
     .map((s) => {
       //1. add ects_budget to return variables for students
-      return { id: s.id, ranking: s.ranking, allocation: [] };
+      return {
+        id: s.id,
+        ranking: s.ranking,
+        ects_budget: s.ects_budget,
+        allocation: [],
+      };
     });
 
   let courses = {};
@@ -56,7 +69,7 @@ const allocateCourses = (inputStudents, inputCourses) => {
   // let order;
   // Allocated all the courses for all the students
   let studentOrder = getRandomOrder(students.length);
-  console.log("even: ", studentOrder);
+  console.log("order: ", studentOrder);
   // 3. swap out APS for ects budget/weight below (??)
 
   // Get the student list in a random order
@@ -73,13 +86,13 @@ const allocateCourses = (inputStudents, inputCourses) => {
   // allocate one course
   while (listForCurrentRound.length > 0) {
     let student = listForCurrentRound.shift();
-    allocateCourse(student, courses);
-
-    // if student allocation has finished then continue
     if (student.allocationWeight >= student.ects_budget) {
       // this student is fully allocated
       continue;
     }
+    allocateCourse(student, courses);
+
+    // if student allocation has finished then continue
     listForTheNextRound.unshift(student);
     if (listForCurrentRound.length === 0) {
       // Swap the lists when the first list is fully processed
