@@ -4,7 +4,7 @@ const Course = require("../models/Course");
 const Student = require("../models/Student");
 const db = require("../config/connection");
 const { allocateCourses, getDemand } = require("../utils/allocation");
-const { uploadCourseData } = require("../utils/uploadCSV");
+// const { uploadCourseData } = require("../utils/uploadCSV");
 const { signToken, signStudentToken } = require("../utils/auth");
 const { parse } = require("csv-parse");
 
@@ -168,11 +168,31 @@ const resolvers = {
     },
     uploadCourses: async (parent, args, context) => {
       if (context.user) {
-        console.log("args 1: ", args);
+        console.log("args c: ", args);
         try {
           await Course.deleteMany({});
 
           const courses = await Course.insertMany(args.courseData);
+          // for (newCourse of courses) {
+          //   console.log(newCourse);
+          // }
+
+          console.log("all done!");
+          return true;
+        } catch (error) {
+          throw error;
+        }
+      } else {
+        throw new AuthenticationError("You haven't Logged in!");
+      }
+    },
+    uploadStudents: async (parent, args, context) => {
+      if (context.user) {
+        console.log("args s: ", args);
+        try {
+          await Student.deleteMany({});
+
+          const courses = await Student.insertMany(args.studentData);
           // for (newCourse of courses) {
           //   console.log(newCourse);
           // }

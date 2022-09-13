@@ -2,11 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import { GENERATE_URLS } from "../utils/mutations";
 
 const StudentFunctions = ({ data, setFormattedData }) => {
+  const [showModal, setShowModal] = useState(false);
   const [generateURLs] = useMutation(GENERATE_URLS);
   const genUrls = async () => {
     try {

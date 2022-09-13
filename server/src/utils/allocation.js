@@ -16,6 +16,7 @@ const allocateCourse = (student, courses) => {
       console.log("preferences exhausted", student.allocationWeight);
       break;
     }
+    console.log("yo", courses, "sho", pref);
     if (courses[pref].capacity > 0) {
       // Seat is available so allocate
       console.log("b", courses[pref]);
