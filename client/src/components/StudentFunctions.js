@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import UpdateStudentModal from "./UpdateStudentModal";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
@@ -22,21 +23,26 @@ const StudentFunctions = ({ data, setFormattedData }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <div id="studentFunctions">
-        <div>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Students
-          </Typography>
+    <>
+      {showModal ? <UpdateStudentModal /> : <></>}
+      <Box sx={{ flexGrow: 1 }}>
+        <div id="studentFunctions">
+          <div>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Students
+            </Typography>
+          </div>
+          <div>
+            <Button color="inherit" onClick={() => setShowModal(true)}>
+              Update Data
+            </Button>
+            <Button color="inherit" onClick={genUrls}>
+              Regenerate Urls
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button color="inherit">Update Data</Button>
-          <Button color="inherit" onClick={genUrls}>
-            Regenerate Urls
-          </Button>
-        </div>
-      </div>
-    </Box>
+      </Box>
+    </>
   );
 };
 

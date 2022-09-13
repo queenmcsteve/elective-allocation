@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-// import { UPLOAD_STUDENTS } from "../utils/mutations";
+import { UPLOAD_STUDENTS } from "../utils/mutations";
 
 const UpdateStudentModal = () => {
   const [textfield, setTextfield] = useState("");
@@ -27,7 +27,7 @@ const UpdateStudentModal = () => {
     jsonObj = jsonObj.map((s) => {
       return {
         ...s,
-        email: parseFloat(s.email),
+        email: s.email,
         ects_budget: parseInt(s.ects_budget),
       };
     });
@@ -41,7 +41,7 @@ const UpdateStudentModal = () => {
     const studentData = uploadStudentData(textfield);
     uploadStudents({
       variables: {
-        studentData: studentData,
+        studentData,
       },
     });
     console.log(studentData);
