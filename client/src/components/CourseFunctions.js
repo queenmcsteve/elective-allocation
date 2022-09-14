@@ -13,7 +13,7 @@ const CourseFunctions = () => {
   const [getDemand] = useMutation(GET_DEMAND);
   const getDmd = async () => {
     const demand = await getDemand();
-    window.location.reload();
+    // window.location.reload();
     console.log("demand: ", demand);
   };
 

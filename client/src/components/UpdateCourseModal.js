@@ -39,13 +39,21 @@ const UpdateCourseModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const courseData = uploadCourseData(textfield);
-    uploadCourses({
-      variables: {
-        courseData,
-      },
-    });
-    console.log(courseData);
+    if (
+      window.confirm(
+        "NOTE: Uploading new course data will delete all students' submitted ranking preferences. Are you sure?"
+      )
+    ) {
+      const courseData = uploadCourseData(textfield);
+      uploadCourses({
+        variables: {
+          courseData,
+        },
+      });
+      console.log(courseData);
+    } else {
+      window.alert("data upload cancelled :)");
+    }
   };
   return (
     <div>

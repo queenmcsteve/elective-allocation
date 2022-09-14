@@ -38,13 +38,21 @@ const UpdateStudentModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const studentData = uploadStudentData(textfield);
-    uploadStudents({
-      variables: {
-        studentData,
-      },
-    });
-    console.log(studentData);
+    if (
+      window.confirm(
+        "NOTE: Uploading new data will delete all existing data, including students' submitted ranking preferences. Are you sure?"
+      )
+    ) {
+      const studentData = uploadStudentData(textfield);
+      uploadStudents({
+        variables: {
+          studentData,
+        },
+      });
+      console.log(studentData);
+    } else {
+      window.alert("data upload cancelled :)");
+    }
   };
   return (
     <div>
