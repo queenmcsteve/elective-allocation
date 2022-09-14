@@ -30,11 +30,29 @@ const StudentRank = () => {
       <header className="App-header">
         <p id="titleText">RankMatch</p>
         <p id="instructText">
-          {data
-            ? data.me.is_submitted
-              ? "Welcome back to RankMatch! You've already submitted your preferences, however you may resubmit if you wish. Drag and drop the courses so that your most preferred option is at the top, and your least preferred option is at the bottom. When you're happy click the button to submit your preferences."
-              : "Welcome to RankMatch! Here you will be able to submit your preferences for elective courses. Drag and drop the courses so that your most preferred option is at the top, and your least preferred option is at the bottom. When you're happy click the button to submit your preferences."
-            : ""}
+          {data ? (
+            data.me.is_submitted ? (
+              <div style={{ color: "#83DF80" }}>
+                {" "}
+                Welcome back to RankMatch! You've already submitted your
+                preferences, but you may resubmit if you wish. Drag and drop the
+                courses so that your most preferred option is at the top, and
+                your least preferred option is at the bottom. When you're happy
+                click the button to submit your preferences.{" "}
+              </div>
+            ) : (
+              <div style={{ color: "#dc143d" }}>
+                {" "}
+                Welcome to RankMatch! Here you will be able to submit your
+                preferences for elective courses. Drag and drop the courses so
+                that your most preferred option is at the top, and your least
+                preferred option is at the bottom. When you're happy click the
+                button to submit your preferences.{" "}
+              </div>
+            )
+          ) : (
+            ""
+          )}
         </p>
         <DragList refresh={refresh} />
         <br />
