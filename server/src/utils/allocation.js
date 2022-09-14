@@ -109,6 +109,8 @@ const allocateCourses = (inputStudents, inputCourses) => {
     };
   });
 
+  getMatchScore(students);
+
   return result;
 };
 
@@ -134,6 +136,12 @@ const getDemand = (inputStudents, inputCourses) => {
     prettyDemand.push({ id: courseId, name: courseName, demand: demandValue });
   });
   return prettyDemand;
+};
+
+const getMatchScore = (inputStudents) => {
+  //SUM THE RANK-INDEX OF COURSES IN THE ALLOCATION LIST
+  //result (+1) will be int between 15 and 40 (for dummy data)
+  console.log("original: ", inputStudents);
 };
 
 module.exports = { allocateCourses, getDemand };

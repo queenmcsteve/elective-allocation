@@ -29,7 +29,15 @@ const AdminDashboard = () => {
     useMutation(PERFORM_ALLOCATION);
   const allocateStudents = async () => {
     const result = await performAllocation();
-    console.log("allocation: ", result);
+    if (result.data.performAllocation === true) {
+      window.alert("Allocation Success!");
+    } else {
+      if (window.confirm("Allocation failed :( try again?")) {
+        allocateStudents();
+      } else {
+        console.log("allocation cancelled");
+      }
+    }
   };
   return (
     <>
