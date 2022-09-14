@@ -60,7 +60,7 @@ export default function StudentTable({ loading, error, data }) {
       renderCell: (params) => {
         return (
           <button onClick={() => generateLink(params.id)}>
-            gen-copy new link
+            gen&copy new link
           </button>
         );
       },
@@ -69,6 +69,24 @@ export default function StudentTable({ loading, error, data }) {
       field: "ranking",
       headerName: "Ranking",
       width: 130,
+      renderCell: (params) => {
+        console.log("tick", params);
+        if (params.row.is_submitted) {
+          return (
+            <div style={{ backgroundColor: "#1b4d3e", color: "white" }}>
+              {" "}
+              {params.formattedValue}{" "}
+            </div>
+          );
+        } else {
+          return (
+            <div style={{ backgroundColor: "#dc143d" }}>
+              {" "}
+              {"No ranking yet..."}{" "}
+            </div>
+          );
+        }
+      },
     },
     {
       field: "allocation",

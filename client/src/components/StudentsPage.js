@@ -25,7 +25,7 @@ const StudentPage = () => {
           allocation: student.allocation
             .map((courseId) => courseIdNameMap[courseId])
             .join(","),
-          matchingIndex: index + 1,
+          matchingIndex: "N/A",
         };
       });
       setFormattedData(formatted);
