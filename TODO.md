@@ -12,6 +12,8 @@ Admin Page:
 - FIX: needs for reload
 - FIX: notifications
 
+++ Bill Gates on the timetable problem
+
 MAYBE WE JUST RESTART TO ALLOCATION LOOP WHEN IT FAILS, AND RUN IT UNTIL IT CLEARS? (there's huge equity implications with this approach)
 
 • diagnose why allocation is failing (even though market should clear)

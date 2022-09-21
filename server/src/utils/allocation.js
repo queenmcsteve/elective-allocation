@@ -112,6 +112,7 @@ const allocateCourses = (inputStudents, inputCourses) => {
     return {
       id: s.id,
       allocation: s.allocation,
+      // ADD TRANSFORM FOR EFFICIENCY METRIC - e.g., rankmatch_score: ((rankmatch_score - 15) / 25 ) * 100
       rankmatch_score: s.rankmatch_score,
     };
   });
