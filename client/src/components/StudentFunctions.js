@@ -37,10 +37,11 @@ const StudentFunctions = ({ data, setFormattedData }) => {
           </div>
           <div>
             <Button color="inherit" onClick={() => setShowModal(true)}>
-              Update Data
+              Upload Fresh Data
             </Button>
+            &nbsp;
             <Button color="inherit" onClick={genUrls}>
-              Regenerate Urls
+              Regenerate All Urls
             </Button>
           </div>
         </div>

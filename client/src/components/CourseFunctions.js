@@ -32,8 +32,9 @@ const CourseFunctions = () => {
           </div>
           <div>
             <Button color="inherit" onClick={() => setShowModal(true)}>
-              Update Data
+              Upload Fresh Data
             </Button>
+            &nbsp;
             <Button color="inherit" onClick={getDmd}>
               Get Demand
             </Button>

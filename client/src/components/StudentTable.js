@@ -73,7 +73,7 @@ export default function StudentTable({ loading, error, data }) {
         console.log("tick", params);
         if (params.row.is_submitted) {
           return (
-            <div style={{ backgroundColor: "#1b4d3e", color: "white" }}>
+            <div style={{ backgroundColor: "#006400", color: "white" }}>
               {" "}
               {params.formattedValue}{" "}
             </div>
