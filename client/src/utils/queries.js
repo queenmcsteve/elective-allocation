@@ -31,6 +31,7 @@ const STUDENTS = gql`
       rank_url
       allocation
       is_submitted
+      rankmatch_score
     }
   }
 `;
@@ -45,6 +46,7 @@ const STUDENTS_COURSES = gql`
       rank_url
       allocation
       is_submitted
+      rankmatch_score
     }
     courses {
       id

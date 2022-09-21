@@ -94,8 +94,8 @@ export default function StudentTable({ loading, error, data }) {
       width: 130,
     },
     {
-      field: "matchingIndex",
-      headerName: "Match Score",
+      field: "rankmatch_score",
+      headerName: "RankMatch Score",
       width: 130,
     },
   ];
