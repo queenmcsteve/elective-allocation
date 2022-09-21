@@ -115,6 +115,7 @@ const resolvers = {
               { _id: student.id },
               {
                 allocation: student.allocation,
+                rankmatch_score: student.rankmatch_score,
               }
             );
           }
