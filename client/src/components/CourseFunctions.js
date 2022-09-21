@@ -5,16 +5,19 @@ import Button from "@mui/material/Button";
 import UpdateCourseModal from "./UpdateCourseModal";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-
 import { GET_DEMAND } from "../utils/mutations";
+const { useQuery, NetworkStatus } = require("@apollo/client");
+const { COURSES } = require("../utils/queries");
 
 const CourseFunctions = () => {
   const [showModal, setShowModal] = useState(false);
   const [getDemand] = useMutation(GET_DEMAND);
+  const { loading, data, error, refetch, networkStatus } = useQuery(COURSES);
   const getDmd = async () => {
     const demand = await getDemand();
     // window.location.reload();
     console.log("demand: ", demand);
+    refetch();
   };
 
   return (

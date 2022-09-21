@@ -5,18 +5,21 @@ import Button from "@mui/material/Button";
 import UpdateStudentModal from "./UpdateStudentModal";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-
 import { GENERATE_URLS } from "../utils/mutations";
+
+const { useQuery } = require("@apollo/client");
+const { STUDENTS_COURSES } = require("../utils/queries");
 
 const StudentFunctions = ({ data, setFormattedData }) => {
   const [showModal, setShowModal] = useState(false);
+  const { loading, data2, error, refetch } = useQuery(STUDENTS_COURSES);
   const [generateURLs] = useMutation(GENERATE_URLS);
   const genUrls = async () => {
     try {
       await generateURLs({
         variable: { students: genUrls },
       });
-      window.location.reload();
+      refetch();
     } catch (err) {
       console.log(err);
     }
