@@ -6,7 +6,7 @@ Admin Page:
 • XX Add data paste option, connect to parse&load function XX
 • XX Swap out APS logic for ECTS budget logic XX
 • XX UPDATE display after url regen & getdemand XX
-• ADD column to student sheet which sums rank order of allocation (min 15, max 40) => [1,2,3,4,5] = 15, [6,7,8,9,10] = 40...
+• XX ADD column to student sheet which sums rank order of allocation
 • ADD to Allocation logic: (swap out i & j in one course when allocation fails, where i is causing the fail and j has a matchScore closest to 15)
 
 - FIX: needs for reload
