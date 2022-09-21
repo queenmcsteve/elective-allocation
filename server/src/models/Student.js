@@ -21,7 +21,7 @@ const studentSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  matching_index: {
+  rankmatch_score: {
     type: Number,
   },
   ranking: [{ type: Schema.Types.ObjectId }],

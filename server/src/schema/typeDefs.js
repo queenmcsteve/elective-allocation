@@ -13,7 +13,7 @@ const typeDefs = gql`
     id: ID
     email: String
     ects_budget: Int
-    matching_index: Int
+    rankmatch_score: Int
     ranking: [ID]
     rank_url: String
     allocation: [ID]
@@ -37,7 +37,7 @@ const typeDefs = gql`
 
   input MatchIndex {
     studentId: ID
-    matching_index: Int
+    rankmatch_score: Int
     rank_url: String
   }
 

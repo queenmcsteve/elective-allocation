@@ -2,27 +2,31 @@ const ALLOCATION_PER_STUDENT = 5;
 
 const allocateCourse = (student, courses) => {
   // Iterate over current preferences and allocate if possible.
-  console.log(
-    "weight: ",
-    student.allocationWeight,
-    "budget :",
-    student.ects_budget
-  );
+  // console.log(
+  //   "weight: ",
+  //   student.allocationWeight,
+  //   "budget :",
+  //   student.ects_budget
+  // );
+
+  const TOTAL_COURSES = 10;
   while (student.allocationWeight < student.ects_budget) {
     // console.log("a", student.ranking);
     let pref = student.ranking.shift();
+    let currPrefScore = TOTAL_COURSES - student.ranking.length;
     if (!pref) {
       // all the preferences got exhausted, no more courses
       console.log("preferences exhausted", student.allocationWeight);
       break;
     }
-    console.log("yo", courses, "sho", pref);
+    // console.log("yo", courses, "sho", pref);
     if (courses[pref].capacity > 0) {
       // Seat is available so allocate
-      console.log("b", courses[pref]);
+      // console.log("b", courses[pref]);
       courses[pref].capacity--; // reduce the capacity
       student.allocation.push(pref);
       student.allocationWeight += courses[pref].ects;
+      student.rankmatch_score += currPrefScore;
       return;
     }
   }
@@ -58,6 +62,8 @@ const allocateCourses = (inputStudents, inputCourses) => {
         ranking: s.ranking,
         ects_budget: s.ects_budget,
         allocation: [],
+        rankmatch_score: 0,
+        allocationWeight: 0,
       };
     });
 
@@ -77,18 +83,17 @@ const allocateCourses = (inputStudents, inputCourses) => {
   let listForCurrentRound = [];
   for (let i = 0; i < students.length; i++) {
     listForCurrentRound.push(students[studentOrder[i]]);
-    listForCurrentRound = listForCurrentRound.map((s) => {
-      return { ...s, allocationWeight: 0 };
-    });
   }
 
   // process the list until there is no student left.
   let listForTheNextRound = [];
+
   // allocate one course
   while (listForCurrentRound.length > 0) {
     let student = listForCurrentRound.shift();
     if (student.allocationWeight >= student.ects_budget) {
       // this student is fully allocated
+      console.log("Fully allocated", student);
       continue;
     }
     allocateCourse(student, courses);
@@ -101,15 +106,18 @@ const allocateCourses = (inputStudents, inputCourses) => {
       listForTheNextRound = [];
     }
   }
+  console.log("After", students);
 
   const result = students.map((s) => {
     return {
       id: s.id,
       allocation: s.allocation,
+      rankmatch_score: s.rankmatch_score,
     };
   });
 
-  getMatchScore(students);
+  console.log(result);
+  // getMatchScore(students);
 
   return result;
 };
@@ -138,10 +146,10 @@ const getDemand = (inputStudents, inputCourses) => {
   return prettyDemand;
 };
 
-const getMatchScore = (inputStudents) => {
-  //SUM THE RANK-INDEX OF COURSES IN THE ALLOCATION LIST
-  //result (+1) will be int between 15 and 40 (for dummy data)
-  console.log("original: ", inputStudents);
-};
+// const getMatchScore = (inputStudents) => {
+//   //SUM THE RANK-INDEX OF COURSES IN THE ALLOCATION LIST
+//   //result (+1) will be int between 15 and 40 (for dummy data)
+//   console.log("original: ", inputStudents);
+// };
 
 module.exports = { allocateCourses, getDemand };
