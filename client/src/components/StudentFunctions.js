@@ -41,7 +41,7 @@ const StudentFunctions = ({ data, setFormattedData }) => {
             </Button>
             &nbsp;
             <Button color="inherit" onClick={genUrls}>
-              Regenerate All Urls
+              ↻ Reload
             </Button>
           </div>
         </div>

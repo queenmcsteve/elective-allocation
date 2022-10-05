@@ -36,7 +36,7 @@ const CourseFunctions = () => {
             </Button>
             &nbsp;
             <Button color="inherit" onClick={getDmd}>
-              Get Demand
+              ↻ Reload
             </Button>
           </div>
         </div>
