@@ -61,9 +61,13 @@ put student j into x
 ]
 }
 
-> > > > HOW TO DEPLOY TO HEROKU
+> > > > DEPLOY TO HEROKU
 > > > > ? what needs to be modified between local/heroku deployments ?
 
 go to client App.js
 lines 15 - 23
 disable and enable appropriate block
+
+maybe also check server server.js
+lines 28-35
+check if should be enabled or disabled
