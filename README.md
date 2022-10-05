@@ -78,6 +78,9 @@ This tools is still under development. Manual refresh of screens is occasionally
   - refresh the screen
   - click download csv to download the data including all student fields
 
+  Deploy local vs Heroku:
+  Disable/enable appropriate block of code in client App.js (lines 15-23)
+
 # Contributing
 
 I am not seeking any contributors for this project at this stage.
