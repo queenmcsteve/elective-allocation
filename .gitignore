@@ -3,3 +3,7 @@ node_modules
 build
 data
 .csv
+RankMatch_courses.csv
+RankMatch_students.csv
+RankMatch_coursesUpdated.csv
+RankMatch_studentsUpdated.csv
