@@ -67,10 +67,8 @@ const resolvers = {
               _id: student._id,
             },
             {
-              rank_url: `${
-                context.headers.origin
-              }/StudentRank/${signStudentToken({
-                _id: args.studentId,
+              rank_url: `http://localhost:3000/StudentRank/${signStudentToken({
+                _id: student._id,
               })}`,
             }
           );
