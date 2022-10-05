@@ -2,7 +2,7 @@ node_modules
 build
 data
 .csv
-.env
+
 RankMatch_courses.csv
 RankMatch_students.csv
 RankMatch_coursesUpdated.csv
