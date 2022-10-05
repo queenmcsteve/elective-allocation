@@ -60,3 +60,6 @@ put student j into x
 }
 ]
 }
+
+> > > > HOW TO DEPLOY TO HEROKU
+> > > > ? what needs to be modified between local/heroku deployments ?
