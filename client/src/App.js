@@ -12,10 +12,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";
 import AdminDashboard from "./pages/AdminDashboard";
 
-// FOR DEPLOYMENT
+// // FOR DEPLOYMENT
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
+
+// FOR LOCAL HOST
+// const httpLink = createHttpLink({
+//   uri: process.env.GRAPHQL_URL || "http://localhost:4000/graphql",
+// });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {

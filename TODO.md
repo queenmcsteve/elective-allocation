@@ -65,8 +65,12 @@ put student j into x
 > > > > ? what needs to be modified between local/heroku deployments ?
 
 go to client App.js
-lines 15 - 23
-disable and enable appropriate block
+lines 15 - 19
+
+// FOR LOCAL HOST
+const httpLink = createHttpLink({
+uri: process.env.GRAPHQL_URL || "http://localhost:4000/graphql",
+});
 
 maybe also check server server.js
 lines 28-35
